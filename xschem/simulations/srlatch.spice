@@ -1,0 +1,73 @@
+** sch_path: /usr/local/share/pdk/sky130A/libs.tech/xschem/sky130_tests/srlatch.sch
+**.subckt srlatch S R Q QN CLK
+*.ipin S
+*.ipin R
+*.opin Q
+*.opin QN
+*.ipin CLK
+x5 S CLK SN VCC VSS lvnand WidthN=1 LenN=0.15 WidthP=1 LenP=0.15 m=1
+x1 R CLK RN VCC VSS lvnand WidthN=1 LenN=0.15 WidthP=1 LenP=0.15 m=1
+x2 RN Q QN VCC VSS lvnand WidthN=1 LenN=0.15 WidthP=1 LenP=0.15 m=1
+x3 SN QN Q VCC VSS lvnand WidthN=1 LenN=0.15 WidthP=1 LenP=0.15 m=1
+**** begin user architecture code
+
+** opencircuitdesign pdks install
+.lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  sky130_tests/lvnand.sym # of pins=3
+** sym_path: /usr/local/share/pdk/sky130A/libs.tech/xschem/sky130_tests/lvnand.sym
+** sch_path: /usr/local/share/pdk/sky130A/libs.tech/xschem/sky130_tests/lvnand.sch
+.subckt lvnand A B Y VCCPIN VSSPIN  WidthN=1 LenN=0.15 WidthP=1 LenP=0.15
+*.ipin A
+*.ipin B
+*.opin Y
+XM1 Y B S VSSPIN sky130_fd_pr__nfet_01v8 L=LenN W=WidthN nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 Y A VCCPIN VCCPIN sky130_fd_pr__pfet_01v8 L=LenP W=WidthP nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 Y B VCCPIN VCCPIN sky130_fd_pr__pfet_01v8 L=LenP W=WidthP nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 S A VSSPIN VSSPIN sky130_fd_pr__nfet_01v8 L=LenN W=WidthN nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+**** begin user architecture code
+
+* .option SCALE=1e-6
+.option method=gear seed=12
+.param L=0.15
+.param W=0.5
+
+vd d 0 0
+vg g 0 0
+.control
+dc vd 0 2 0.01 vg 0 2 0.2
+alterparam L=0.18
+alterparam W=1
+reset
+dc vd 0 2 0.01 vg 0 2 0.2
+alterparam L=0.3
+alterparam W=2
+reset
+dc vd 0 2 0.01 vg 0 2 0.2
+alterparam L=0.5
+alterparam W=3
+reset
+dc vd 0 2 0.01 vg 0 2 0.2
+
+.endc
+
+
+
+
+
+**** end user architecture code
+.end

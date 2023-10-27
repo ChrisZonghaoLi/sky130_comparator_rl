@@ -1,0 +1,44 @@
+* transient analysis clk-2-Q
+tran 1p 3n
+plot v(Vclk) v(Vclk_bar)
+plot v(Vout_n) v(Vout_p)
+plot v(Di_p) v(Di_n)
+plot v(Q) v(Q_bar)
+*wrdata double_tail_comp_tb_Voutn_opt3 Vout_n 
+*wrdata double_tail_comp_tb_Voutp_opt3 Vout_p 
+*wrdata double_tail_comp_tb_Vclk_opt3 Vclk
+
+* kickback noise
+*wrdata double_tail_comp_tb_Vn_kn_opt3 Vn_kn 
+*wrdata double_tail_comp_tb_Vp_kn_opt3 Vp_kn 
+plot {Vp_kn-Vn_kn}
+
+* power consumption
+plot @Rdummy[i]
+*wrdata double_tail_comp_tb_I_opt3 @Rdummy[i]
+
+* metastability
+plot {Vout_p_ms-Vout_n_ms}
+plot Vout_p_ms Vout_n_ms
+*wrdata double_tail_comp_tb_Voutn_ms_opt3 Vout_n_ms 
+*wrdata double_tail_comp_tb_Voutp_ms_opt3 Vout_p_ms 
+
+* op analysis
+alter Vclk dc=1.8
+alter Vclk_bar dc=0
+alter Vdiff dc=0
+op
+*.include /autofs/fs1.ece/fs1.eecg.tcc/lizongh2/sky130_comparator/xschem/simulations/double_tail_comp_tb_dev_params.spice
+
+* with mc analysis
+*repeat 100
+*  tran 100p 1u
+*  set appendwrite
+*  wrdata double_tail_comp_tb_Vsc_mc_opt3 Vsc
+*  wrdata double_tail_comp_tb_Voutn_mc_opt3 Vout_n_mc
+*  wrdata double_tail_comp_tb_Voutp_mc_opt3 Vout_p_mc
+*  reset
+*end
+*plot v(Vsc) v(Vcm_mc) v(Vout_p_mc) v(Vout_n_mc)
+
+

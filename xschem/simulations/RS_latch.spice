@@ -1,0 +1,10 @@
+** sch_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/RS_latch.sch
+**.subckt RS_latch Q Q_bar R S
+*.opin Q
+*.opin Q_bar
+*.ipin R
+*.ipin S
+x1 R Q_bar VGND VNB VPB VPWR Q sky130_fd_sc_hd__nor2_1
+x2 Q S VGND VNB VPB VPWR Q_bar sky130_fd_sc_hd__nor2_1
+**.ends
+.end
