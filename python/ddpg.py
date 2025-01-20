@@ -112,12 +112,23 @@ class DDPGAgent:
         gamma: float = 0.99,
         tau: float = 5e-3,
         initial_random_steps: int = 1e4,
+        update_freq: int = 1,
+        lr_actor: float = 3e-4,
+        lr_critic: float = 3e-4,
+        weight_decay_actor: float = 1e-4,
+        weight_decay_critic: float = 1e-4
     ):
         super().__init__()
         """Initialize."""
         self.noise_sigma = noise_sigma
         self.noise_sigma_min = noise_sigma_min
         self.noise_sigma_decay = noise_sigma_decay
+        self.update_freq = update_freq # every <update_freq> steps, DDPG update its weights
+
+        self.lr_actor = lr_actor
+        self.lr_critic = lr_actor
+        self.weight_decay_actor = weight_decay_actor
+        self.weight_decay_critic = weight_decay_critic
 
         self.action_dim = CktGraph.action_dim
 
@@ -144,9 +155,9 @@ class DDPGAgent:
 
         # optimizer
         self.actor_optimizer = optim.Adam(
-            self.actor.parameters(), lr=3e-4, weight_decay=1e-4)
+            self.actor.parameters(), lr=self.lr_actor, weight_decay=self.weight_decay_actor)
         self.critic_optimizer = optim.Adam(
-            self.critic.parameters(), lr=3e-4, weight_decay=1e-4)
+            self.critic.parameters(), lr=self.lr_critic, weight_decay=self.weight_decay_critic)
 
         # transition to store in memory
         self.transition = list()
@@ -157,7 +168,7 @@ class DDPGAgent:
         self.noise_type = noise_type
 
         # mode: train / test
-        self.is_test = False
+        # self.is_test = False
 
     def select_action(self, state: np.ndarray) -> np.ndarray:
 
@@ -196,6 +207,20 @@ class DDPGAgent:
                 torch.FloatTensor(state).to(self.device)
             ).detach().cpu().numpy()  # in (-1, 1)
             selected_action = selected_action.flatten()
+            
+            # add noise for exploration during training (also testing)
+            if self.noise_type == 'uniform':
+                print("""Uniform distribution noise""")
+                selected_action = np.random.uniform(np.clip(
+                    selected_action-self.noise_sigma, -1, 1), np.clip(selected_action+self.noise_sigma, -1, 1))
+
+            if self.noise_type == 'truncnorm':
+                print("""Truncated normal distribution noise""")
+                selected_action = trunc_normal(selected_action, self.noise_sigma)
+                selected_action = np.clip(selected_action, -1, 1)
+
+            self.noise_sigma = max(
+                self.noise_sigma_min, self.noise_sigma*self.noise_sigma_decay)
 
         print(f'selected action: {selected_action}')
         self.transition = [state, selected_action]
@@ -206,9 +231,9 @@ class DDPGAgent:
         """Take an action and return the response of the env."""
         next_state, reward, terminated, truncated, info = self.env.step(action)
 
-        if self.is_test == False:
-            self.transition += [reward, next_state, terminated, info]
-            self.memory.store(*self.transition)
+        # save transitions to the buffer, both during training and testing
+        self.transition += [reward, next_state, terminated, info]
+        self.memory.store(*self.transition)
 
         return next_state, reward, terminated, truncated, info
 
@@ -277,7 +302,7 @@ class DDPGAgent:
             # if training is ready
             if (
                 len(self.memory) >= self.batch_size
-                and self.total_step > self.initial_random_steps
+                and self.total_step > self.initial_random_steps and self.total_step % self.update_freq == 0
             ):
                 actor_loss, critic_loss = self.update_model()
                 actor_losses.append(actor_loss)
@@ -294,29 +319,41 @@ class DDPGAgent:
 
         self.env.close()
 
-    def test(self):
+    def test(self, num_steps: int, plotting_interval: int = 10):
         """Test the agent."""
         self.is_test = True
 
         state, info = self.env.reset()
-        truncated = False
-        terminated = False
+        actor_losses = []
+        critic_losses = []
+        scores = []
         score = 0
 
-        performance_list = []
-        while truncated == False or terminated == False:
+        for self.total_step in range(1, num_steps + 1):
+            print(f'*** Step: {self.total_step} | Episode: {self.episode} ***')
+
             action = self.select_action(state)
             next_state, reward, terminated, truncated, info = self.step(action)
-            performance_list.append([action, info])
 
             state = next_state
             score += reward
 
-        print(f"score: {score}")
-        print(f"info: {info}")
-        self.env.close()
+            if terminated or truncated:
+                state, info = self.env.reset()
+                self.episode = self.episode + 1
+                scores.append(score)
+                score = 0
 
-        return performance_list
+            # plotting
+            if self.total_step % plotting_interval == 0:
+                self._plot(
+                    self.total_step,
+                    scores,
+                    actor_losses,
+                    critic_losses,
+                )
+
+        self.env.close()
 
     def _target_soft_update(self):
         """Soft-update: target = tau*local + (1-tau)*target."""

@@ -6,6 +6,8 @@ plot v(Di_p) v(Di_n)
 plot v(Q) v(Q_bar)
 wrdata double_tail_comp_tb_Voutn Vout_n 
 wrdata double_tail_comp_tb_Voutp Vout_p 
+wrdata double_tail_comp_tb_Vdin Di_n 
+wrdata double_tail_comp_tb_Vdip Di_p 
 wrdata double_tail_comp_tb_Vclk Vclk
 
 * power consumption

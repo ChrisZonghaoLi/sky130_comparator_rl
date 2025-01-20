@@ -13,7 +13,7 @@ This one is for SKY130 process.
 You can just run it once to generate the script for the dcop
 """
 
-from ckt_graphs import GraphDoubleTailComp
+from ckt_graphs import GraphDoubleTailComp, GraphStrongArmComp
 
 
 class DeviceParams(object):
@@ -310,7 +310,12 @@ if __name__ == '__main__':
         for line in dev_params_script:
             f.write(f'{line}\n')    
 
-            
+    ckt_hierarchy = GraphStrongArmComp().ckt_hierarchy      
+    dev_params_script = DeviceParams(ckt_hierarchy).gen_dev_params(file_name='strong_arm_comp_tb_op')
+    
+    with open('simulations/strong_arm_comp_tb_dev_params.spice', 'w') as f:
+        for line in dev_params_script:
+            f.write(f'{line}\n')    
             
             
             

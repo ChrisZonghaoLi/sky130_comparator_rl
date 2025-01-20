@@ -1,55 +1,43 @@
-** sch_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/double_tail_comp_tb.sch
-**.subckt double_tail_comp_tb Di_n Di_p Vout_n Vout_p Q Q_bar Di_n_mc Di_p_mc Vout_n_mc Vout_p_mc
-*+ Di_n_ms Di_p_ms Vout_n_ms Vout_p_ms Di_n_kn Di_p_kn Vout_n_kn Vout_p_kn
-*.opin Di_n
-*.opin Di_p
+** sch_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/strong_arm_comp_tb.sch
+**.subckt strong_arm_comp_tb Vout_n Vout_p Q Q_bar Vout_n_mc Vout_p_mc Vout_n_ms Vout_p_ms Vout_n_kn
+*+ Vout_p_kn
 *.opin Vout_n
 *.opin Vout_p
 *.opin Q
 *.opin Q_bar
-*.opin Di_n_mc
-*.opin Di_p_mc
 *.opin Vout_n_mc
 *.opin Vout_p_mc
-*.opin Di_n_ms
-*.opin Di_p_ms
 *.opin Vout_n_ms
 *.opin Vout_p_ms
-*.opin Di_n_kn
-*.opin Di_p_kn
 *.opin Vout_n_kn
 *.opin Vout_p_kn
-x1 net1 Vclk_bar Vout_n Vout_p Di_n Di_p Vclk Vcm net13 double_tail_comp
-VDD net1 net12 VDD
+VDD net15 net14 VDD
 Vclk Vclk GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
-Vclk_bar Vclk_bar GND PULSE(0 VDD Tdelay_bar Tr Tf Tclk_pk Tclk 0)
 Vcm Vcm GND dc Vcm
-Vdiff net13 Vcm dc Vin
+Vdiff net2 Vcm dc Vin
 C2 Q_bar GND 10f m=1
 C3 Q GND 10f m=1
-x2 net2 Vout_n Q Vout_p Q_bar RS_latch
-x3 net6 net5 Vout_n_mc Vout_p_mc Di_n_mc Di_p_mc net4 net3 Vsc double_tail_comp
-VDD2 net6 GND VDD
-Vclk2 net4 GND PULSE(0 VDD 0 Tr Tf Tclk_pk Tclk 0)
-Vclk_bar2 net5 GND PULSE(0 VDD Tclk_pk Tr Tf Tclk_pk Tclk 0)
-Vcm2 net3 GND dc Vcm
+Rdummy net14 GND 1 m=1
+VDD1 net1 GND VDD
+x1 net15 Vout_p Vout_n net2 Vcm Vclk strong_arm_comp
+VDD2 net5 GND VDD
+Vclk1 net3 GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vcm1 net4 GND dc Vcm
+x3 net5 Vout_p_mc Vout_n_mc Vsc net4 net3 strong_arm_comp
 ASRC1 %v([ Vsc ]) filesrc
-x4 net11 net10 Vout_n_ms Vout_p_ms Di_n_ms Di_p_ms net9 net7 net8 double_tail_comp
-VDD3 net11 GND VDD
-Vclk3 net9 GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
-Vclk_bar3 net10 GND PULSE(0 VDD Tdelay_bar Tr Tf Tclk_pk Tclk 0)
-Vcm3 net7 GND dc Vcm
-Vdiff2 net8 net7 dc Vin_min
-VDD_latch net2 GND VDD
-Rdummy net12 GND 1 m=1
-x5 net17 net16 Vout_n_kn Vout_p_kn Di_n_kn Di_p_kn net15 Vn_kn Vp_kn double_tail_comp
-VDD4 net17 GND VDD
-Vclk4 net15 GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
-Vclk_bar5 net16 GND PULSE(0 VDD Tdelay_bar Tr Tf Tclk_pk Tclk 0)
-Vcm4 net14 GND dc Vcm
-Vdiff4 net18 net14 dc Vin
-Rdummyn net14 Vn_kn 8k m=1
-Rdummyp net18 Vp_kn 8k m=1
+VDD3 net8 GND VDD
+Vclk2 net6 GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vcm2 net7 GND dc Vcm
+x4 net8 Vout_p_ms Vout_n_ms net9 net7 net6 strong_arm_comp
+Vdiff1 net9 net7 dc Vin_min
+VDD4 net12 GND VDD
+Vclk3 net10 GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vcm3 net11 GND dc Vcm
+x5 net12 Vout_p_kn Vout_n_kn Vp_kn Vn_kn net10 strong_arm_comp
+Vdiff2 net13 net11 dc Vin
+Rdummyp net13 Vp_kn 8k m=1
+Rdummyn net11 Vn_kn 8k m=1
+x2 net1 Vout_p Q Vout_n Q_bar RS_latch
 **** begin user architecture code
 
 .param mc_mm_switch=0
@@ -73,27 +61,21 @@ Rdummyp net18 Vp_kn 8k m=1
 
 .nodeset V(Vout_n) = 0
 .nodeset V(Vout_p) = 0
-.nodeset V(Di_n) = 0
-.nodeset V(Di_p) = 0
 .nodeset V(Q) = 0
 .nodeset V(Q_bar) = 0
 
 .nodeset V(Vout_n_mc) = 0
 .nodeset V(Vout_p_mc) = 0
-.nodeset V(Di_n_mc) = 0
-.nodeset V(Di_p_mc) = 0
 
 .nodeset V(Vout_n_ms) = 0
 .nodeset V(Vout_p_ms) = 0
-.nodeset V(Di_n_ms) = 0
-.nodeset V(Di_p_ms) = 0
 
 .control
 set filetype=ascii
 set units=degrees
 
-.include /autofs/fs1.ece/fs1.eecg.tcc/lizongh2/sky130_comparator/python/simulations/double_tail_comp_tb_vars.spice
-.include /autofs/fs1.ece/fs1.eecg.tcc/lizongh2/sky130_comparator/python/simulations/double_tail_comp_tb_analyses.spice
+.include /autofs/fs1.ece/fs1.eecg.tcc/lizongh2/sky130_comparator/python/simulations/strong_arm_comp_tb_vars.spice
+.include /autofs/fs1.ece/fs1.eecg.tcc/lizongh2/sky130_comparator/python/simulations/strong_arm_comp_tb_analyses.spice
 
 .endc
 
@@ -101,57 +83,49 @@ set units=degrees
 **** end user architecture code
 **.ends
 
-* expanding   symbol:  double_tail_comp.sym # of pins=11
-** sym_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/double_tail_comp.sym
-** sch_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/double_tail_comp.sch
-.subckt double_tail_comp VDD Vclk_bar Vout_n Vout_p Di_n Di_p Vclk Vin_n Vin_p
-*.iopin VDD
-*.ipin Vclk
-*.ipin Vclk
+* expanding   symbol:  strong_arm_comp.sym # of pins=6
+** sym_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/strong_arm_comp.sym
+** sch_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/strong_arm_comp.sch
+.subckt strong_arm_comp VDD Vout_p Vout_n Vin_p Vin_n Vclk
 *.ipin Vin_p
 *.ipin Vin_n
-*.opin Di_n
-*.opin Di_p
+*.ipin Vclk
+*.iopin VDD
 *.opin Vout_n
 *.opin Vout_p
-*.ipin Vclk_bar
-*.iopin VDD
 XM1 Di_n Vin_p net1 GND sky130_fd_pr__nfet_01v8 L=0.15 W=W_M1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
 XM2 Di_p Vin_n net1 GND sky130_fd_pr__nfet_01v8 L=0.15 W=W_M2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
-XM3 Di_n Vclk VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M3 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=1 m=1
-XM4 Di_p Vclk VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M4 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=1 m=1
-XM5 net1 Vclk GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=W_M5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=1 m=1
-XM6 Vout_p Di_n GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=W_M6 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=1 m=1
-XM7 Vout_p Vout_n GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=W_M7 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM3 Vout_n Vout_p Di_n GND sky130_fd_pr__nfet_01v8 L=0.15 W=W_M3 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
 + nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM8 Vout_n Vout_p GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=W_M8 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM4 Vout_p Vout_n Di_p GND sky130_fd_pr__nfet_01v8 L=0.15 W=W_M4 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
 + nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM9 Vout_n Di_p GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=W_M9 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
+XM5 Vout_n Vout_p VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM6 Vout_p Vout_n VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M6 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM9 Vout_p Vclk VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M9 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
-XM10 Vout_p Vout_n net2 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M10 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
-+ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM11 Vout_n Vout_p net2 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M11 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
-+ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM12 net2 Vclk_bar VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M12 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
-+ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM8 Vout_n Vclk VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M8 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM7 net1 Vclk GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=W_M7 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM10 Di_n Vclk VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M10 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM11 Di_p Vclk VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M11 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
 .ends
 
 

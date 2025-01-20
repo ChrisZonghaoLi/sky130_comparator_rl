@@ -1,71 +1,44 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Nov  2 16:20:56 2022
+Created on Fri Sep 29 17:12:55 2023
 
-@author: zonghao
+@author: lizongh2
 """
 
-import torch
-import math
-import warnings
-from torch import Tensor
 import numpy as np
-
 import os
 
+import matplotlib.pyplot as plt
+plt.style.use(style='default')
+plt.rcParams['lines.linewidth'] = 2
+plt.rcParams["font.weight"] = "bold"
+plt.rcParams["axes.labelweight"] = "bold"
+plt.rcParams["axes.axisbelow"] = False
+plt.rc('axes', axisbelow=True)
+
+from scipy.optimize import curve_fit
+
+from ckt_graphs import GraphDoubleTailComp, GraphStrongArmComp
 from dev_params import DeviceParams
 
 PWD = os.getcwd()
-os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
+SPICE_NETLIST_DIR = '/autofs/fs1.ece/fs1.eecg.tcc/lizongh2/sky130_comparator/xschem/simulations'
 
+NETLIST_NAME = 'strong_arm_comp_tb'
+CktGraph = GraphStrongArmComp
 
-class ActionNormalizer():
-    """Rescale and relocate the actions."""
-    def __init__(self, action_space_low, action_space_high):
-        
-        self.action_space_low = action_space_low
-        self.action_space_high = action_space_high
-
-    def action(self, action: np.ndarray) -> np.ndarray:
-        """Change the range (-1, 1) to (low, high)."""
-        low = self.action_space_low
-        high = self.action_space_high 
-
-        scale_factor = (high - low) / 2
-        reloc_factor = high - scale_factor
-
-        action = action * scale_factor + reloc_factor
-        action = np.clip(action, low, high)
-
-        return action
-
-    def reverse_action(self, action: np.ndarray) -> np.ndarray:
-        """Change the range (low, high) to (-1, 1)."""
-        low = self.action_space_low
-        high = self.action_space_high
-
-        scale_factor = (high - low) / 2
-        reloc_factor = high - scale_factor
-
-        action = (action - reloc_factor) / scale_factor
-        action = np.clip(action, -1.0, 1.0)
-
-        return action
-
-        
 class OutputParser(DeviceParams):
     
-    def __init__(self, CktGraph, SPICE_NETLIST_DIR=f'{PWD}/simulations'):
+    def __init__(self, CktGraph):
         self.ckt_hierarchy = CktGraph.ckt_hierarchy
         self.op = CktGraph.op
-        self.SPICE_NETLIST_DIR = SPICE_NETLIST_DIR
         super().__init__(self.ckt_hierarchy)
 
     def ac(self, file_name):
         # AC analysis result parser
         try:
-            ldo_tb_ac = open(f'{self.SPICE_NETLIST_DIR}/{file_name}', 'r')
+            ldo_tb_ac = open(f'{SPICE_NETLIST_DIR}/{file_name}', 'r')
             lines_ac = ldo_tb_ac.readlines()
             freq = []
             Vout_mag = []
@@ -83,7 +56,7 @@ class OutputParser(DeviceParams):
     def dc(self, file_name):
         # DC analysis result parser
         try:
-            ldo_tb_dc = open(f'{self.SPICE_NETLIST_DIR}/{file_name}', 'r')
+            ldo_tb_dc = open(f'{SPICE_NETLIST_DIR}/{file_name}', 'r')
             lines_dc = ldo_tb_dc.readlines()
             Vin_dc = []
             Vout_dc = []
@@ -103,7 +76,7 @@ class OutputParser(DeviceParams):
     def tran(self, file_name):
         # Transient analysis result parser
         try:
-            ldo_tb_tran = open(f'{self.SPICE_NETLIST_DIR}/{file_name}', 'r')
+            ldo_tb_tran = open(f'{SPICE_NETLIST_DIR}/{file_name}', 'r')
             lines_tran = ldo_tb_tran.readlines()
             time = []
             Vout_tran = []
@@ -121,7 +94,7 @@ class OutputParser(DeviceParams):
     def dcop(self, file_name):
         # DCOP analysis result parser
         try:
-            ldo_tb_op = open(f'{self.SPICE_NETLIST_DIR}/{file_name}', 'r')
+            ldo_tb_op = open(f'{SPICE_NETLIST_DIR}/{file_name}', 'r')
             # ldo_tb_op = open(f'{file_dir}', 'r')
             lines_op = ldo_tb_op.readlines()
             for index, line in enumerate(lines_op):
@@ -174,75 +147,38 @@ class OutputParser(DeviceParams):
             return self.op
         except:
             print("Simulation errors, no .OP simulation results.")
-        
 
-# https://zhuanlan.zhihu.com/p/521318833
+Vcm = 1.0683653097599746
+time, Vsc_hy = np.array(OutputParser(CktGraph()).tran(f'{NETLIST_NAME}_Vsc_hy_opt_final'))
+_, Voutn_hy = np.array(OutputParser(CktGraph()).tran(f'{NETLIST_NAME}_Voutn_hy_opt_final'))
+_, Voutp_hy = np.array(OutputParser(CktGraph()).tran(f'{NETLIST_NAME}_Voutp_hy_opt_final'))
 
-def _no_grad_trunc_normal_(tensor, mean, std, a, b):
-    # Method based on https://people.sc.fsu.edu/~jburkardt/presentations/truncated_normal.pdf
-    def norm_cdf(x):
-        # Computes standard normal cumulative distribution function
-        return (1. + math.erf(x / np.sqrt(2.))) / 2.
+'''' find hysteresis '''
 
-    if (mean < a - 2 * std) or (mean > b + 2 * std):
-        warnings.warn("mean is more than 2 std from [a, b] in nn.init.trunc_normal_. "
-                      "The distribution of values may be incorrect.",
-                      stacklevel=2)
+Vout = Voutp_hy - Voutn_hy
+if NETLIST_NAME == 'double_tail_comp_tb':
+    eps = 0.1 # +/- 0.1V as the sign discriminator
+    sign = Vout > eps
+if NETLIST_NAME == 'strong_arm_comp_tb':
+    eps = 0.1 # +/- 0.1V as the sign discriminator
+    sign = Vout > eps
 
-    with torch.no_grad():
-        # Values are generated by using a truncated uniform distribution and
-        # then using the inverse CDF for the normal distribution.
-        # Get upper and lower cdf values
-        l = norm_cdf((a - mean) / std)
-        u = norm_cdf((b - mean) / std)
+try:
+    idx_r = np.where(sign == True)[0][0]
+    idx_f = np.where(sign == True)[0][-1]
+    V_hy_r = Vsc_hy[idx_r]
+    V_hy_f = Vsc_hy[idx_f]
+except:
+    pass
 
-        # Uniformly fill tensor with values from [l, u], then translate to
-        # [2l-1, 2u-1].
-        tensor.uniform_(2 * l - 1, 2 * u - 1)
+V_hy = abs(V_hy_r) - abs(V_hy_f)
 
-        # Use inverse cdf transform for normal distribution to get truncated
-        # standard normal
-        tensor.erfinv_()
 
-        # Transform to proper mean, std
-        tensor.mul_(std * math.sqrt(2.))
-        tensor.add_(mean)
 
-        # Clamp to ensure it's in the proper range
-        tensor.clamp_(min=a, max=b)
-        return tensor
 
-def trunc_normal_(tensor: Tensor, mean: float = 0., std: float = 1., a: float = -2., b: float = 2.) -> Tensor:
-    r"""Fills the input Tensor with values drawn from a truncated
-    normal distribution. The values are effectively drawn from the
-    normal distribution :math:`\mathcal{N}(\text{mean}, \text{std}^2)`
-    with values outside :math:`[a, b]` redrawn until they are within
-    the bounds. The method used for generating the random values works
-    best when :math:`a \leq \text{mean} \leq b`.
 
-    Args:
-        tensor: an n-dimensional `torch.Tensor`
-        mean: the mean of the normal distribution
-        std: the standard deviation of the normal distribution
-        a: the minimum cutoff value
-        b: the maximum cutoff value
 
-    Examples:
-        >>> w = torch.empty(3, 5)
-        >>> nn.init.trunc_normal_(w)
-    """
-    return _no_grad_trunc_normal_(tensor, mean, std, a, b)
 
-def trunc_normal(mean, std, a=-1, b=1):
-    """
-    wrapper of <trunc_normal_> to work with np.array
 
-    """
-    
-    output = np.zeros(len(mean))
-    
-    for i in range(len(mean)):
-        output[i] = trunc_normal_(torch.empty(1), mean[i], std, a, b)[0]
 
-    return output
-    
+

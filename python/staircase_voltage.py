@@ -27,8 +27,9 @@ time_stride =  time[1] - time[0]
 Tclk = 1/1e9
 Tclk_count = int(Tclk / time_stride)
 
-Vramp_start = -60e-3
-Vramp_pk = 60e-3
+# Vcm = 1.0683653097599746 
+Vramp_start = -1e-3
+Vramp_pk = 1e-3
 
 rise_count = int(( 100001 / 2)  /  Tclk_count) # how many cycles within the rising time
 fall_count = rise_count 
@@ -41,13 +42,13 @@ for i in range(rise_count):
     Vramp_rise.append(Vramp)
     
 Vramp_rise = np.array(Vramp_rise).flatten() * Vramp_res + Vramp_start
-Vramp_fall = Vramp_rise * -1
+Vramp_fall = np.flip(Vramp_rise)
 Vramp_fall = np.append(Vramp_fall, Vramp_start)
 Vramp = np.concatenate((Vramp_rise, Vramp_fall))
 
 data = np.column_stack([time, Vramp])
 
-save_path = SPICE_NETLIST_DIR + '/staircase_voltage.txt'
+save_path = SPICE_NETLIST_DIR + '/staircase_voltage_hysteresis.txt'
 np.savetxt(save_path , data, fmt=['%.8e','%.8e'])
 
 

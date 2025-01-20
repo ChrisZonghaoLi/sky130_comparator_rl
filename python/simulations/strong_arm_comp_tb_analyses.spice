@@ -1,0 +1,44 @@
+* transient analysis clk-2-Q
+tran 1p 4n
+plot v(Vclk)
+plot v(Vout_n) v(Vout_p)
+plot v(Q) v(Q_bar)
+wrdata strong_arm_comp_tb_Voutn Vout_n 
+wrdata strong_arm_comp_tb_Voutp Vout_p 
+wrdata strong_arm_comp_tb_Vdip x1.Di_p 
+wrdata strong_arm_comp_tb_Vdin x1.Di_n 
+wrdata strong_arm_comp_tb_Vclk Vclk
+
+* kickback noise
+wrdata strong_arm_comp_tb_Vn_kn Vn_kn 
+wrdata strong_arm_comp_tb_Vp_kn Vp_kn 
+plot {Vp_kn-Vn_kn}
+
+* power consumption
+plot @Rdummy[i]
+wrdata strong_arm_comp_tb_Ibias @Rdummy[i]
+
+* metastability
+plot {Vout_p_ms-Vout_n_ms}
+plot Vout_p_ms Vout_n_ms
+wrdata strong_arm_comp_tb_Voutn_ms Vout_n_ms 
+wrdata strong_arm_comp_tb_Voutp_ms Vout_p_ms 
+
+* op analysis
+alter Vclk dc=1.8
+alter Vdiff dc=0
+op
+.include /autofs/fs1.ece/fs1.eecg.tcc/lizongh2/sky130_comparator/python/simulations/strong_arm_comp_tb_dev_params.spice
+
+* with mc analysis
+*repeat 1
+*  tran 100p 1u
+*  set appendwrite
+*  wrdata strong_arm_comp_tb_Vsc_mc Vsc
+*  wrdata strong_arm_comp_tb_Voutn_mc Vout_n_mc
+*  wrdata strong_arm_comp_tb_Voutp_mc Vout_p_mc
+*  reset
+*end
+*plot {v(Vout_p_mc)-v(Vout_n_mc)} v(Vsc) v(Vcm)
+
+

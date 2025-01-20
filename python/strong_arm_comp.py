@@ -13,7 +13,7 @@ from tabulate import tabulate
 import gymnasium as gym
 from gymnasium import spaces
 
-from ckt_graphs import GraphDoubleTailComp 
+from ckt_graphs import GraphStrongArmComp 
 from dev_params import DeviceParams
 from utils import ActionNormalizer, OutputParser
 
@@ -23,12 +23,12 @@ date = datetime.today().strftime('%Y-%m-%d')
 
 PWD = os.getcwd()
 SPICE_NETLIST_DIR = f'{PWD}/simulations'
-NETLIST_NAME = 'double_tail_comp_tb'
+NETLIST_NAME = 'strong_arm_comp_tb'
 os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 
-CktGraph = GraphDoubleTailComp
+CktGraph = GraphStrongArmComp
 
-class DoubleTailCompEnv(gym.Env, CktGraph, DeviceParams):
+class StrongArmCompEnv(gym.Env, CktGraph, DeviceParams):
 
     def __init__(self):
         gym.Env.__init__(self)
@@ -40,12 +40,12 @@ class DoubleTailCompEnv(gym.Env, CktGraph, DeviceParams):
         self.action_space = spaces.Box(low=-1, high=1, shape=self.action_shape, dtype=np.float64)
         
     def _initialize_simulation(self):
-        self.W_M1, self.W_M3, self.W_M5, self.W_M6, self.W_M7, self.W_M10, self.W_M12, self.Vcm= \
-        np.array([1, 1, 1, 1, 1, 1, 1, 1.1]) 
+        self.W_M1, self.W_M3, self.W_M5, self.W_M7, self.W_M8, self.W_M10, self.Vcm= \
+        np.array([1, 1, 1, 1, 1, 1, 1.1]) 
         # self.Vcm: initial input common-mode voltage
 
         """Run the initial simulations."""  
-        action = np.array([self.W_M1, self.W_M3, self.W_M5, self.W_M6, self.W_M7, self.W_M10, self.W_M12, self.Vcm])
+        action = np.array([self.W_M1, self.W_M3, self.W_M5, self.W_M7, self.W_M8, self.W_M10, self.Vcm])
         
         self.do_simulation(action)
         
@@ -53,23 +53,17 @@ class DoubleTailCompEnv(gym.Env, CktGraph, DeviceParams):
         """
          W_M1 = W_M2, 
          W_M3 = W_M4,
-         W_M6 = W_M9 = 10*W_M7, 
-         W_M7 = W_M8,
+         W_M6 = W_M5,
+         W_M9 = W_M8,
          W_M10 = W_M11
         """ 
-        W_M1, W_M3, W_M5, W_M6, W_M7, W_M10, W_M12, Vcm = action 
-        
-        # We enforce W_M6 to be larger than W_M7 to surpress regeneration
-        # and also improve the offset performance
-        if W_M6 < 2 * W_M7:
-            W_M6 = min(2*W_M7, 10)
+        W_M1, W_M3, W_M5, W_M7, W_M8, W_M10, Vcm = action 
             
         CL = self.CktGraph.CL
         Vin = self.CktGraph.Vin
         Tclk = self.CktGraph.Tclk
         Tclk_pk = self.CktGraph.Tclk_pk
         Tdelay = self.CktGraph.Tdelay
-        Tdelay_bar = self.CktGraph.Tdelay_bar
         Tr = self.CktGraph.Tr
         Tf = self.CktGraph.Tf
         VDD = self.CktGraph.VDD
@@ -84,21 +78,19 @@ class DoubleTailCompEnv(gym.Env, CktGraph, DeviceParams):
             lines[0] = f'.param W_M1={W_M1}\n'
             lines[1] = f'.param W_M3={W_M3}\n'
             lines[2] = f'.param W_M5={W_M5}\n'
-            lines[3] = f'.param W_M6={W_M6}\n'
-            lines[4] = f'.param W_M7={W_M7}\n'
+            lines[3] = f'.param W_M7={W_M7}\n'
+            lines[4] = f'.param W_M8={W_M8}\n'
             lines[5] = f'.param W_M10={W_M10}\n'
-            lines[6] = f'.param W_M12={W_M12}\n'
-            lines[12] = f'.param Vcm={Vcm}\n'
-            lines[13] = f'.param VDD={VDD}\n'
-            lines[14] = f'.param Vin={Vin}\n'
-            lines[15] = f'.param Vin_min={Vin_min}\n'
-            lines[16] = f'.param CL={CL}\n'
-            lines[17] = f'.param Tclk={Tclk}\n'
-            lines[18] = f'.param Tclk_pk={Tclk_pk}\n'
-            lines[19] = f'.param Tdelay={Tdelay}\n'
-            lines[20] = f'.param Tdelay_bar={Tdelay_bar}\n'
-            lines[21] = f'.param Tr={Tr}\n'
-            lines[22] = f'.param Tf={Tf}\n'            
+            lines[11] = f'.param Vcm={Vcm}\n'
+            lines[12] = f'.param VDD={VDD}\n'
+            lines[13] = f'.param Vin={Vin}\n'
+            lines[14] = f'.param Vin_min={Vin_min}\n'
+            lines[15] = f'.param CL={CL}\n'
+            lines[16] = f'.param Tclk={Tclk}\n'
+            lines[17] = f'.param Tclk_pk={Tclk_pk}\n'
+            lines[18] = f'.param Tdelay={Tdelay}\n'
+            lines[19] = f'.param Tr={Tr}\n'
+            lines[20] = f'.param Tf={Tf}\n'            
 
             comp_tb_vars = open(f'{SPICE_NETLIST_DIR}/{NETLIST_NAME}_vars.spice', 'w')
             comp_tb_vars.writelines(lines)
@@ -133,7 +125,7 @@ class DoubleTailCompEnv(gym.Env, CktGraph, DeviceParams):
         
         print(f"action: {action}")
         
-        self.W_M1, self.W_M3, self.W_M5, self.W_M6, self.W_M7, self.W_M10, self.W_M12, self.Vcm = action
+        self.W_M1, self.W_M3, self.W_M5, self.W_M7, self.W_M8, self.W_M10, self.Vcm = action
         
         ''' run simulations '''
         self.do_simulation(action)
@@ -217,16 +209,6 @@ class DoubleTailCompEnv(gym.Env, CktGraph, DeviceParams):
                                 self.OP_M5['vgs']
                                 ]) - self.op_mean)/self.op_std
         
-        self.OP_M6 = self.op_results['M6']
-        self.OP_M6_norm = (np.abs([self.OP_M6['id'],
-                                self.OP_M6['gm'],
-                                self.OP_M6['gds'],
-                                self.OP_M6['vth'],
-                                self.OP_M6['vdsat'],
-                                self.OP_M6['vds'],
-                                self.OP_M6['vgs']
-                                ]) - self.op_mean)/self.op_std
-        
         self.OP_M7 = self.op_results['M7']
         self.OP_M7_norm = (np.abs([self.OP_M7['id'],
                                 self.OP_M7['gm'],
@@ -235,6 +217,16 @@ class DoubleTailCompEnv(gym.Env, CktGraph, DeviceParams):
                                 self.OP_M7['vdsat'],
                                 self.OP_M7['vds'],
                                 self.OP_M7['vgs']
+                                ]) - self.op_mean)/self.op_std
+        
+        self.OP_M8 = self.op_results['M8']
+        self.OP_M8_norm = (np.array([self.OP_M8['id'],
+                                self.OP_M8['gm'],
+                                self.OP_M8['gds'],
+                                self.OP_M8['vth'],
+                                self.OP_M8['vdsat'],
+                                self.OP_M8['vds'],
+                                self.OP_M8['vgs']
                                 ]) - self.op_mean)/self.op_std
         
         self.OP_M10 = self.op_results['M10']
@@ -247,31 +239,20 @@ class DoubleTailCompEnv(gym.Env, CktGraph, DeviceParams):
                                 self.OP_M10['vgs']
                                 ]) - self.op_mean)/self.op_std
         
-        self.OP_M12 = self.op_results['M12']
-        self.OP_M12_norm = (np.array([self.OP_M12['id'],
-                                self.OP_M12['gm'],
-                                self.OP_M12['gds'],
-                                self.OP_M12['vth'],
-                                self.OP_M12['vdsat'],
-                                self.OP_M12['vds'],
-                                self.OP_M12['vgs']
-                                ]) - self.op_mean)/self.op_std
-        
-        # state shall be in the order of node (M1,M2,M3,M4,M5,M6,M7,M8,M9,M10,M11,M12)
-        # it is a symmatric circuits: M1 and M2, M3 and M4, M6 and M9, M7 and M8, M10 and M11
+        # state shall be in the order of node (M1,M2,M3,M4,M5,M6,M7,M8,M9,M10,M11)
+        # it is a symmatric circuits: M1 and M2, M3 and M4, M6 and M5, M9 and M8, M10 and M11
         observation = np.array([
                                [self.OP_M1_norm[0],self.OP_M1_norm[1],self.OP_M1_norm[2],self.OP_M1_norm[3],self.OP_M1_norm[4],self.OP_M1_norm[5],self.OP_M1_norm[6]],
                                [self.OP_M1_norm[0],self.OP_M1_norm[1],self.OP_M1_norm[2],self.OP_M1_norm[3],self.OP_M1_norm[4],self.OP_M1_norm[5],self.OP_M1_norm[6]],
                                [self.OP_M3_norm[0],self.OP_M3_norm[1],self.OP_M3_norm[2],self.OP_M3_norm[3],self.OP_M3_norm[4],self.OP_M3_norm[5],self.OP_M3_norm[6]],
                                [self.OP_M3_norm[0],self.OP_M3_norm[1],self.OP_M3_norm[2],self.OP_M3_norm[3],self.OP_M3_norm[4],self.OP_M3_norm[5],self.OP_M3_norm[6]],
                                [self.OP_M5_norm[0],self.OP_M5_norm[1],self.OP_M5_norm[2],self.OP_M5_norm[3],self.OP_M5_norm[4],self.OP_M5_norm[5],self.OP_M5_norm[6]],
-                               [self.OP_M6_norm[0],self.OP_M6_norm[1],self.OP_M6_norm[2],self.OP_M6_norm[3],self.OP_M6_norm[4],self.OP_M6_norm[5],self.OP_M6_norm[6]],
+                               [self.OP_M5_norm[0],self.OP_M5_norm[1],self.OP_M5_norm[2],self.OP_M5_norm[3],self.OP_M5_norm[4],self.OP_M5_norm[5],self.OP_M5_norm[6]],
                                [self.OP_M7_norm[0],self.OP_M7_norm[1],self.OP_M7_norm[2],self.OP_M7_norm[3],self.OP_M7_norm[4],self.OP_M7_norm[5],self.OP_M7_norm[6]],
-                               [self.OP_M7_norm[0],self.OP_M7_norm[1],self.OP_M7_norm[2],self.OP_M7_norm[3],self.OP_M7_norm[4],self.OP_M7_norm[5],self.OP_M7_norm[6]],
-                               [self.OP_M6_norm[0],self.OP_M6_norm[1],self.OP_M6_norm[2],self.OP_M6_norm[3],self.OP_M6_norm[4],self.OP_M6_norm[5],self.OP_M6_norm[6]],
+                               [self.OP_M8_norm[0],self.OP_M8_norm[1],self.OP_M8_norm[2],self.OP_M8_norm[3],self.OP_M8_norm[4],self.OP_M8_norm[5],self.OP_M8_norm[6]],
+                               [self.OP_M8_norm[0],self.OP_M8_norm[1],self.OP_M8_norm[2],self.OP_M8_norm[3],self.OP_M8_norm[4],self.OP_M8_norm[5],self.OP_M8_norm[6]],
                                [self.OP_M10_norm[0],self.OP_M10_norm[1],self.OP_M10_norm[2],self.OP_M10_norm[3],self.OP_M10_norm[4],self.OP_M10_norm[5],self.OP_M10_norm[6]],
                                [self.OP_M10_norm[0],self.OP_M10_norm[1],self.OP_M10_norm[2],self.OP_M10_norm[3],self.OP_M10_norm[4],self.OP_M10_norm[5],self.OP_M10_norm[6]],
-                               [self.OP_M12_norm[0],self.OP_M12_norm[1],self.OP_M12_norm[2],self.OP_M12_norm[3],self.OP_M12_norm[4],self.OP_M12_norm[5],self.OP_M12_norm[6]],
                                ])
         # clip the obs for better regularization
         observation = np.clip(observation, -5, 5)
@@ -310,15 +291,15 @@ class DoubleTailCompEnv(gym.Env, CktGraph, DeviceParams):
             self.Vout_score = 0
         
         # introduce a score that defines if Vout+ and Vout- node get reset when Vclk = 0
-        eps1 = 0.1 # margin for the descriminator
+        eps1 = 0.9 # margin for the descriminator
         Tclk = self.Tclk # clock period
         Tdelay_Tclk = Tdelay + Tclk #  __/--\__, delay time plus the first clock cycle
         idx_Tdelay_Tclk = np.argmin(np.abs(time - Tdelay_Tclk))
-        if np.min(self.Voutp[idx_Tdelay_Tr_Tclkpk:idx_Tdelay_Tclk]) >= VDD * eps1 or np.min(self.Voutn[idx_Tdelay_Tr_Tclkpk:idx_Tdelay_Tclk]) >= VDD * eps1:
+        if np.max(self.Voutp[idx_Tdelay_Tr_Tclkpk:idx_Tdelay_Tclk]) <= VDD * eps1 or np.max(self.Voutn[idx_Tdelay_Tr_Tclkpk:idx_Tdelay_Tclk]) <= VDD * eps1:
             self.Vout_reset_score = -1
         else:
             self.Vout_reset_score = 0 # Vout+ and Vout- node get reset when Vclk = 0
-            
+
         # introduce a score that defines if Vdi+ and Vdi- node get reset when Vclk = 0
         eps2 = 0.9
         if np.max(self.Vdip[idx_Tdelay_Tr_Tclkpk:idx_Tdelay_Tclk]) <= VDD * eps2 or np.max(self.Vdin[idx_Tdelay_Tr_Tclkpk:idx_Tdelay_Tclk]) <= VDD * eps2:
@@ -359,7 +340,7 @@ class DoubleTailCompEnv(gym.Env, CktGraph, DeviceParams):
         # 2 is just a scaling factor to compensate the error between the prediction model and MC simulation results, 
         # it is emperical.
         self.Vos = 2 * self.total_offset
-        if self.Vout_score < 0 or self.Vout_reset_score < 0 or self.Vdi_reset_score < 0: 
+        if self.Vout_score < 0 or self.Vout_reset_score or self.Vdi_reset_score < 0: 
             self.Vos_score = -1
         else:
             self.Vos_score = np.min([(self.Vos_spec - self.Vos) / (self.Vos_spec + self.Vos) ,0])
@@ -390,7 +371,7 @@ class DoubleTailCompEnv(gym.Env, CktGraph, DeviceParams):
             self.kn_score = np.min([(self.V_kn_pk_spec - self.V_kn_pk) / (self.V_kn_pk_spec + self.V_kn_pk) ,0])
         
         ''' Metastability '''
-        # these are generated when the test Vin=1mV to the positive input terminal
+        # these are generated when the test Vin=Vin_min to the positive input terminal
         _, Vout_n_ms = self.sim_results.tran(file_name=f'{NETLIST_NAME}_Voutn_ms')
         _, Vout_p_ms = self.sim_results.tran(file_name=f'{NETLIST_NAME}_Voutp_ms')
         Vout_n_ms = np.array(Vout_n_ms)
@@ -420,7 +401,7 @@ class DoubleTailCompEnv(gym.Env, CktGraph, DeviceParams):
             self.tau = np.inf # time of the regeneration becomes pointless
             self.ms_score = -1
             self.t_decision = np.inf
-
+            
         """ Total reward """
         self.reward = self.Clk2Q_score + self.Vout_score + self.Vout_reset_score + self.E_cycle_score + self.kn_score + self.ms_score + self.Vos_score
                 
@@ -600,26 +581,24 @@ class DoubleTailCompEnv(gym.Env, CktGraph, DeviceParams):
             json.dump(self.OP_M_mean_std, file)
 
 if __name__ == "__main__":
-        W_M1 = 8.4
+        W_M1 = 10.08
         W_M3 = 0.84
-        W_M5 = 5.04
-        W_M6 = 1.68
-        W_M7 = 0.84
-        W_M10 = 0.84
-        W_M12 = 10.08
+        W_M5 = 0.84
+        W_M7 = 10.08
+        W_M8 = 0.84
+        W_M10 = 1.68
         Vcm = 0.91
-        env = DoubleTailCompEnv()
+        env = StrongArmCompEnv()
         action_space_low = env.action_space_low
         action_space_high = env.action_space_high
         
-        action = [W_M1, W_M3, W_M5, W_M6, W_M7, W_M10, W_M12, Vcm]
+        action = [W_M1, W_M3, W_M5, W_M7, W_M8, W_M10, Vcm]
 
         action_normalized = ActionNormalizer(action_space_low=action_space_low, action_space_high = \
                                        action_space_high).reverse_action(action) # convert to [-1,1]
         
         env.step(action_normalized)
-    
-
-
-
-
+        
+        
+        
+        
