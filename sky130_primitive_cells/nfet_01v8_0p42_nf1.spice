@@ -1,0 +1,6 @@
+* NGSPICE file created from nfet_01v8_0p42_nf1.ext - technology: sky130A
+
+.subckt nfet_01v8_0p42_nf1
+X0 a_143_0# a_88_120# a_0_0# VSUBS sky130_fd_pr__nfet_01v8 ad=0.237 pd=1.97 as=0.237 ps=1.97 w=0.42 l=0.15
+.ends
+

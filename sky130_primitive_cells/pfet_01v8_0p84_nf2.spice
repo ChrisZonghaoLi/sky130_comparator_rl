@@ -1,0 +1,7 @@
+* NGSPICE file created from pfet_01v8_0p84_nf2.ext - technology: sky130A
+
+.subckt pfet_01v8_0p84_nf2
+X0 a_143_0# a_113_n36# a_0_0# w_n36_n42# sky130_fd_pr__pfet_01v8 ad=0.237 pd=1.4 as=0.475 ps=2.81 w=0.84 l=0.15
+X1 a_286_0# a_113_n36# a_143_0# w_n36_n42# sky130_fd_pr__pfet_01v8 ad=0.475 pd=2.81 as=0.237 ps=1.4 w=0.84 l=0.15
+.ends
+
