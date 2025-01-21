@@ -1,0 +1,22 @@
+.param W_M1=9.93461649954319
+.param W_M3=0.4409187573194506
+.param W_M5=0.5376651191711428
+.param W_M7=9.894590236544609
+.param W_M8=0.8433232551813123
+.param W_M10=3.1882640171051024
+.param W_M2=W_M1
+.param W_M4=W_M3
+.param W_M6=W_M5
+.param W_M9=W_M8
+.param W_M11=W_M10
+.param Vcm=0.9044990748167039
+.param VDD=1.8
+.param Vin=0.05
+.param Vin_min=0.0001
+.param CL=2e-14
+.param Tclk=1e-09
+.param Tclk_pk=4.5e-10
+.param Tdelay=2e-10
+.param Tr=5.000000000000001e-11
+.param Tf=5.000000000000001e-11
+

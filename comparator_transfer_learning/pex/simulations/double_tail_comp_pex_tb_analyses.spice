@@ -1,0 +1,42 @@
+* transient analysis clk-2-Q
+tran 1p 3n
+plot v(Vclk) v(Vclk_bar)
+plot v(Vout_n) v(Vout_p)
+plot {Vout_p-Vout_n}
+plot v(Di_p) v(Di_n)
+plot v(Q) v(Q_bar)
+wrdata double_tail_comp_pex_tb_Voutn Vout_n 
+wrdata double_tail_comp_pex_tb_Voutp Vout_p 
+wrdata double_tail_comp_pex_tb_Vdip Di_p 
+wrdata double_tail_comp_pex_tb_Vdin Di_n 
+wrdata double_tail_comp_pex_tb_Vclk Vclk
+wrdata double_tail_comp_pex_tb_Vclk_bar Vclk_bar
+
+* kickback noise
+wrdata double_tail_comp_pex_tb_Vn_kn Vn_kn 
+wrdata double_tail_comp_pex_tb_Vp_kn Vp_kn 
+plot {Vp_kn-Vn_kn}
+
+* power consumption
+plot @Rdummy[i]
+wrdata double_tail_comp_pex_tb_Ibias @Rdummy[i]
+
+* metastability
+plot {Vout_p_ms-Vout_n_ms}
+plot Vout_p_ms Vout_n_ms
+wrdata double_tail_comp_pex_tb_Voutn_ms Vout_n_ms 
+wrdata double_tail_comp_pex_tb_Voutp_ms Vout_p_ms 
+
+* MC for offset do this only for the last verification and turn mismatch switch on mc_mm_switch=1
+*repeat 100
+*  tran 100p 1u
+*  set appendwrite
+*  wrdata double_tail_comp_pex_tb_Vsc_mc_1 Vsc
+*  wrdata double_tail_comp_pex_tb_Voutn_mc_1 Vout_n_mc
+*  wrdata double_tail_comp_pex_tb_Voutp_mc_1 Vout_p_mc
+*  reset
+*end
+*plot v(Vsc) v(Vcm) v(Vout_p_mc) v(Vout_n_mc)
+
+
+

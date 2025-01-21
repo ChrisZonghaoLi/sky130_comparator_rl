@@ -1,0 +1,191 @@
+** sch_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/double_tail_comp_tb.sch
+**.subckt double_tail_comp_tb Vout_n Vout_p Di_p Di_n Q Q_bar Vout_n_mc Vout_p_mc Di_p_mc Di_n_mc
+*+ Vout_n_ms Vout_p_ms Di_p_ms Di_n_ms Vout_n_kn Vout_p_kn Di_p_kn Di_n_kn
+*.opin Vout_n
+*.opin Vout_p
+*.opin Di_p
+*.opin Di_n
+*.opin Q
+*.opin Q_bar
+*.opin Vout_n_mc
+*.opin Vout_p_mc
+*.opin Di_p_mc
+*.opin Di_n_mc
+*.opin Vout_n_ms
+*.opin Vout_p_ms
+*.opin Di_p_ms
+*.opin Di_n_ms
+*.opin Vout_n_kn
+*.opin Vout_p_kn
+*.opin Di_p_kn
+*.opin Di_n_kn
+x1 net1 Vclk_bar Vout_n Vout_p Di_p Di_n Vclk Vcm net2 double_tail_comp
+VDD net1 net12 VDD
+Vclk Vclk GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vclk_bar Vclk_bar GND PULSE(0 VDD Tdelay_bar Tr Tf Tclk_pk Tclk 0)
+Vcm Vcm GND dc Vcm
+Vdiff net2 Vcm dc Vin
+x2 net18 Vout_p Q Q_bar Vout_n RS_latch
+x3 net5 net4 Vout_n_mc Vout_p_mc Di_p_mc Di_n_mc net3 net6 Vsc double_tail_comp
+VDD2 net5 GND VDD
+Vclk2 net3 GND PULSE(0 VDD 0 Tr Tf Tclk_pk Tclk 0)
+Vclk_bar2 net4 GND PULSE(0 VDD Tclk_pk Tr Tf Tclk_pk Tclk 0)
+Vcm2 net6 GND dc Vcm
+C2 Q_bar GND 10f m=1
+C3 Q GND 10f m=1
+ASRC1 %v([ Vsc ]) filesrc
+x4 net9 net8 Vout_n_ms Vout_p_ms Di_p_ms Di_n_ms net7 net10 net11 double_tail_comp
+VDD3 net9 GND VDD
+Vclk3 net7 GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vclk_bar3 net8 GND PULSE(0 VDD Tdelay_bar Tr Tf Tclk_pk Tclk 0)
+Vcm3 net10 GND dc Vcm
+Rdummy net12 GND 1 m=1
+Vdiff2 net11 net10 dc Vin_min
+x5 net15 net14 Vout_n_kn Vout_p_kn Di_p_kn Di_n_kn net13 Vn_kn Vp_kn double_tail_comp
+VDD4 net15 GND VDD
+Vclk4 net13 GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vclk_bar6 net14 GND PULSE(0 VDD Tdelay_bar Tr Tf Tclk_pk Tclk 0)
+Vcm4 net16 GND dc Vcm
+Vdiff4 net17 net16 dc Vin
+Rdummyn net16 Vn_kn 8k m=1
+Rdummyp net17 Vp_kn 8k m=1
+VDD1 net18 GND VDD
+**** begin user architecture code
+
+.include /usr/local/share/pdk/gf180mcuC/libs.tech/ngspice/design.ngspice
+.lib /usr/local/share/pdk/gf180mcuC/libs.tech/ngspice/sm141064.ngspice typical
+
+
+
+
+.include /autofs/fs1.ece/fs1.eecg.tcc/lizongh2/comparator_transfer_learning/sky130_to_gf180/simulations/double_tail_comp_tb_vars.spice
+
+.options savecurrents
+.option seed=random
+.save all
+
+.nodeset V(Vout_n) = 0
+.nodeset V(Vout_p) = 0
+.nodeset V(Di_n) = 0
+.nodeset V(Di_p) = 0
+.nodeset V(Q) = 0
+.nodeset V(Q_bar) = 0
+
+.nodeset V(Vout_n_mc) = 0
+.nodeset V(Vout_p_mc) = 0
+.nodeset V(Di_n_mc) = 0
+.nodeset V(Di_p_mc) = 0
+
+.control
+set filetype=ascii
+
+.include /autofs/fs1.ece/fs1.eecg.tcc/lizongh2/comparator_transfer_learning/sky130_to_gf180/simulations/double_tail_comp_tb_analyses.spice
+
+.endc
+
+
+
+.param   sw_stat_global = 0   sw_stat_mismatch = 0
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/double_tail_comp.sym # of
+*+ pins=11
+** sym_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/double_tail_comp.sym
+** sch_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/double_tail_comp.sch
+.subckt double_tail_comp VDD Vclk_bar Vout_n Vout_p Di_p Di_n Vclk Vin_n Vin_p
+*.iopin VDD
+*.iopin VDD
+*.ipin Vin_p
+*.ipin Vin_n
+*.ipin Vclk
+*.ipin Vclk
+*.ipin Vclk_bar
+*.opin Vout_n
+*.opin Vout_p
+*.opin Di_n
+*.opin Di_p
+XM1 Di_n Vin_p net1 GND nfet_03v3 L=0.28u W=W_M1 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM2 Di_p Vin_n net1 GND nfet_03v3 L=0.28u W=W_M2 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM5 net1 Vclk GND GND nfet_03v3 L=0.28u W=W_M5 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM3 Di_n Vclk VDD VDD pfet_03v3 L=0.28u W=W_M3 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM4 Di_p Vclk VDD VDD pfet_03v3 L=0.28u W=W_M4 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM6 Vout_p Di_n GND GND nfet_03v3 L=0.28u W=W_M6 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM7 Vout_p Vout_n GND GND nfet_03v3 L=0.28u W=W_M7 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM8 Vout_n Vout_p GND GND nfet_03v3 L=0.28u W=W_M8 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM9 Vout_n Di_p GND GND nfet_03v3 L=0.28u W=W_M9 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM10 Vout_p Vout_n net2 VDD pfet_03v3 L=0.28u W=W_M10 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM11 Vout_n Vout_p net2 VDD pfet_03v3 L=0.28u W=W_M11 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM12 net2 Vclk_bar VDD VDD pfet_03v3 L=0.28u W=W_M12 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+.ends
+
+
+* expanding   symbol:  /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/RS_latch.sym # of pins=5
+** sym_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/RS_latch.sym
+** sch_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/RS_latch.sch
+.subckt RS_latch VDD R Q Q_bar S
+*.iopin VDD
+*.ipin R
+*.ipin S
+*.opin Q
+*.opin Q_bar
+x1 VDD R Q_bar Q nor
+x2 VDD Q S Q_bar nor
+.ends
+
+
+* expanding   symbol:  /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/nor.sym # of pins=4
+** sym_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/nor.sym
+** sch_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/nor.sch
+.subckt nor VDD A B out
+*.ipin A
+*.ipin B
+*.iopin VDD
+*.opin out
+XM1 out B GND GND nfet_03v3 L=0.28u W=0.22u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM2 out A GND GND nfet_03v3 L=0.28u W=0.22u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM3 out B net1 VDD pfet_03v3 L=0.28u W=0.44u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM4 net1 A VDD VDD pfet_03v3 L=0.28u W=0.44u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+.ends
+
+.GLOBAL GND
+**** begin user architecture code
+
+.model filesrc filesource (file="staircase_voltage.txt" amploffset=[Vcm] amplscale=[1] timeoffset=0
++ timescale=1 timerelative=false amplstep=false)
+
+**** end user architecture code
+.end

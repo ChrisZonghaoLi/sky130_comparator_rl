@@ -1,0 +1,121 @@
+
+Note: Compatibility modes selected: hs a
+
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+
+
+Circuit: ** sch_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/strong_arm_comp_tb.sch
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+net2                                       3.3
+net1                               -2.3356e-11
+vclk                                         0
+vcm                                   0.931425
+net6                                  0.981425
+q                                  4.63181e-08
+q_bar                              1.84515e-08
+vout_p                                     3.3
+x2.x1.net1                            0.767886
+net3                                       3.3
+vout_n                                     3.3
+x2.x2.net1                                 3.3
+x1.di_n                                    3.3
+x1.net1                               0.828054
+x1.di_p                                    3.3
+net7                                       3.3
+net4                                         0
+net5                                  0.931425
+x4.di_n                                    3.3
+vsc                                   0.871425
+x4.net1                               0.785847
+x4.di_p                                    3.3
+vout_n_mc                                  3.3
+vout_p_mc                                  3.3
+net10                                      3.3
+net8                                         0
+net9                                  0.931425
+x3.di_n                                    3.3
+net11                                 0.931525
+x3.net1                               0.800576
+x3.di_p                                    3.3
+vout_n_ms                                  3.3
+vout_p_ms                                  3.3
+net13                                      3.3
+net12                                        0
+net14                                 0.931425
+x5.di_n                                    3.3
+vp_kn                                 0.981425
+x5.net1                               0.828056
+x5.di_p                                    3.3
+vn_kn                                 0.931425
+vout_n_kn                                  3.3
+vout_p_kn                                  3.3
+net15                                 0.981425
+vdiff2#branch                                0
+vcm3#branch                                  0
+vclk3#branch                                 0
+vdd4#branch                       -2.33586e-11
+vdiff1#branch                                0
+vcm2#branch                                  0
+vclk2#branch                                 0
+vdd3#branch                       -2.32469e-11
+vcm1#branch                                  0
+vclk1#branch                                 0
+vdd2#branch                       -2.31878e-11
+vdd1#branch                       -1.17086e-11
+vdiff#branch                                 0
+vcm#branch                                   0
+vclk#branch                                  0
+vdd#branch                         -2.3356e-11
+asrc1#branch_0_0                             0
+
+
+No. of Data Rows : 3044
+
+Warning: command 'plot' is not available during batch simulation, ignored!
+    You may use Gnuplot instead.
+
+
+Warning: command 'plot' is not available during batch simulation, ignored!
+    You may use Gnuplot instead.
+
+
+Warning: command 'plot' is not available during batch simulation, ignored!
+    You may use Gnuplot instead.
+
+
+Warning: command 'plot' is not available during batch simulation, ignored!
+    You may use Gnuplot instead.
+
+
+Warning: command 'plot' is not available during batch simulation, ignored!
+    You may use Gnuplot instead.
+
+
+Warning: command 'plot' is not available during batch simulation, ignored!
+    You may use Gnuplot instead.
+
+
+Warning: command 'plot' is not available during batch simulation, ignored!
+    You may use Gnuplot instead.
+
+
+Warning: command 'plot' is not available during batch simulation, ignored!
+    You may use Gnuplot instead.
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Note: vclk: dc value used for op instead of transient time=0 value.
+
+No. of Data Rows : 1
+ASCII raw file "strong_arm_comp_tb_op"
+Note: Simulation executed from .control section 

@@ -1,0 +1,167 @@
+** sch_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/strong_arm_comp_tb.sch
+**.subckt strong_arm_comp_tb Vout_n Vout_p Q Q_bar Vout_n_mc Vout_p_mc Vout_n_ms Vout_p_ms Vout_n_kn
+*+ Vout_p_kn
+*.opin Vout_n
+*.opin Vout_p
+*.opin Q
+*.opin Q_bar
+*.opin Vout_n_mc
+*.opin Vout_p_mc
+*.opin Vout_n_ms
+*.opin Vout_p_ms
+*.opin Vout_n_kn
+*.opin Vout_p_kn
+VDD net2 net1 VDD
+Vclk Vclk GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vcm Vcm GND dc Vcm
+Vdiff net6 Vcm dc Vin
+x2 net3 Vout_p Q Q_bar Vout_n RS_latch
+C2 Q_bar GND 10f m=1
+C3 Q GND 10f m=1
+Rdummy net1 GND 1 m=1
+x1 net2 Vout_p Vout_n net6 Vcm Vclk strong_arm_comp
+VDD1 net3 GND VDD
+VDD2 net7 GND VDD
+Vclk1 net4 GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vcm1 net5 GND dc Vcm
+x4 net7 Vout_p_mc Vout_n_mc Vsc net5 net4 strong_arm_comp
+ASRC1 %v([ Vsc ]) filesrc
+VDD3 net10 GND VDD
+Vclk2 net8 GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vcm2 net9 GND dc Vcm
+x3 net10 Vout_p_ms Vout_n_ms net11 net9 net8 strong_arm_comp
+Vdiff1 net11 net9 dc Vin_min
+VDD4 net13 GND VDD
+Vclk3 net12 GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vcm3 net14 GND dc Vcm
+x5 net13 Vout_p_kn Vout_n_kn Vp_kn Vn_kn net12 strong_arm_comp
+Vdiff2 net15 net14 dc Vin
+Rdummyp net15 Vp_kn 8k m=1
+Rdummyn net14 Vn_kn 8k m=1
+**** begin user architecture code
+
+.include /usr/local/share/pdk/gf180mcuC/libs.tech/ngspice/design.ngspice
+.lib /usr/local/share/pdk/gf180mcuC/libs.tech/ngspice/sm141064.ngspice typical
+
+
+
+
+.include /autofs/fs1.ece/fs1.eecg.tcc/lizongh2/comparator_transfer_learning/sky130_to_gf180/simulations/strong_arm_comp_tb_vars.spice
+
+.options savecurrents
+.option seed=random
+.save all
+
+.nodeset V(Vout_n) = 0
+.nodeset V(Vout_p) = 0
+.nodeset V(Q) = 0
+.nodeset V(Q_bar) = 0
+
+.nodeset V(Vout_n_mc) = 0
+.nodeset V(Vout_p_mc) = 0
+
+.control
+set filetype=ascii
+
+.include /autofs/fs1.ece/fs1.eecg.tcc/lizongh2/comparator_transfer_learning/sky130_to_gf180/simulations/strong_arm_comp_tb_analyses.spice
+
+.endc
+
+
+
+.param   sw_stat_global = 0   sw_stat_mismatch = 0
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/RS_latch.sym # of pins=5
+** sym_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/RS_latch.sym
+** sch_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/RS_latch.sch
+.subckt RS_latch VDD R Q Q_bar S
+*.iopin VDD
+*.ipin R
+*.ipin S
+*.opin Q
+*.opin Q_bar
+x1 VDD R Q_bar Q nor
+x2 VDD Q S Q_bar nor
+.ends
+
+
+* expanding   symbol:  /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/strong_arm_comp.sym # of
+*+ pins=6
+** sym_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/strong_arm_comp.sym
+** sch_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/strong_arm_comp.sch
+.subckt strong_arm_comp VDD Vout_p Vout_n Vin_p Vin_n Vclk
+*.ipin Vin_p
+*.ipin Vin_n
+*.ipin Vclk
+*.iopin VDD
+*.opin Vout_n
+*.opin Vout_p
+XM1 Di_n Vin_p net1 GND nfet_03v3 L=0.28u W=W_M1 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM2 Di_p Vin_n net1 GND nfet_03v3 L=0.28u W=W_M2 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM7 net1 Vclk GND GND nfet_03v3 L=0.28u W=W_M7 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM3 Vout_n Vout_p Di_n GND nfet_03v3 L=0.28u W=W_M3 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM4 Vout_p Vout_n Di_p GND nfet_03v3 L=0.28u W=W_M4 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM5 Vout_n Vout_p VDD VDD pfet_03v3 L=0.28u W=W_M5 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM6 Vout_p Vout_n VDD VDD pfet_03v3 L=0.28u W=W_M6 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM8 Vout_n Vclk VDD VDD pfet_03v3 L=0.28u W=W_M8 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM9 Vout_p Vclk VDD VDD pfet_03v3 L=0.28u W=W_M9 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM10 Di_n Vclk VDD VDD pfet_03v3 L=0.28u W=W_M10 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM11 Di_p Vclk VDD VDD pfet_03v3 L=0.28u W=W_M11 nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+.ends
+
+
+* expanding   symbol:  /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/nor.sym # of pins=4
+** sym_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/nor.sym
+** sch_path: /fs1/eecg/tcc/lizongh2/gf180_comparator/xschem/nor.sch
+.subckt nor VDD A B out
+*.ipin A
+*.ipin B
+*.iopin VDD
+*.opin out
+XM1 out B GND GND nfet_03v3 L=0.28u W=0.22u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM2 out A GND GND nfet_03v3 L=0.28u W=0.22u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM3 out B net1 VDD pfet_03v3 L=0.28u W=0.44u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+XM4 net1 A VDD VDD pfet_03v3 L=0.28u W=0.44u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W'
++ sa=0 sb=0 sd=0 m=1
+.ends
+
+.GLOBAL GND
+**** begin user architecture code
+
+.model filesrc filesource (file="staircase_voltage.txt" amploffset=[Vcm] amplscale=[1] timeoffset=0
++ timescale=1 timerelative=false amplstep=false)
+
+**** end user architecture code
+.end

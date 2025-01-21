@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Feb  1 16:51:03 2024
+
+@author: lizongh2
+
+This is used to convert the optimal consinuous transistor size of strong-arm comparator to discretized
+LAYGO2 size, so that when doing Netgen, it wont complain about the size difference.
+"""
+
+import numpy as np
+import re
+import shutil 
+import yaml
+
+# extrac the transistor dimension parameters
+with open(f'/autofs/fs1.ece/fs1.eecg.tcc/lizongh2/sky130_comparator/comparator_transfer_learning/pex/simulations/strong_arm_comp_tb_vars.spice', "r") as variables:
+    params = variables.readlines()
+
+W = []
+
+for param in params:
+    for i in range(0,len(param)):
+        if param[i:i+5] == 'W_M1=':
+            W_M1 = float(re.findall("\d+\.\d+", param)[0])
+            W_M2 = W_M1
+            W.append(['M1', W_M1, 'NMOS'])
+        if param[i:i+5] == 'W_M3=':
+            W_M3 = float(re.findall("\d+\.\d+", param)[0])
+            W_M4 = W_M3
+            W.append(['M3', W_M3, 'NMOS'])
+        if param[i:i+5] == 'W_M5=':
+            W_M5 = float(re.findall("\d+\.\d+", param)[0])
+            W_M6 = W_M5
+            W.append(['M5', W_M5, 'PMOS'])
+        if param[i:i+5] == 'W_M7=':
+            W_M7 = float(re.findall("\d+\.\d+", param)[0])
+            W.append(['M7', W_M7, 'NMOS'])
+        if param[i:i+5] == 'W_M8=':
+            W_M8 = float(re.findall("\d+\.\d+", param)[0])
+            W_M9 = W_M8
+            W.append(['M8', W_M8, 'PMOS'])
+        if param[i:i+6] == 'W_M10=':
+            W_M10 = float(re.findall("\d+\.\d+", param)[0])
+            W_M11 = W_M10
+            W.append(['M10', W_M10, 'PMOS'])
+            
+device_dict = {}
+device_dict['circuit'] = 'strong_arm'
+
+for w in W:
+    if w[1] >= 5.04:
+        if w[2] == 'NMOS':
+            mosfet = 'nfet_01v8_0p84_nf2'
+        else:
+            mosfet = 'pfet_01v8_0p84_nf2'
+        w_discrete = round(w[1]/(0.84*2)) * (0.84*2) 
+        nf = round(w[1]/(0.84*2)) * 2
+    else:
+        if w[2] == 'NMOS':
+            mosfet = 'nfet_01v8_0p42_nf2'
+        else:
+            mosfet = 'pfet_01v8_0p42_nf2'
+        w_discrete = round(w[1]/(0.42*2)) * (0.42*2) 
+        nf = round(w[1]/(0.42*2)) * 2
+
+    device_dict[w[0]] = {}
+    device_dict[w[0]]['mosfet'] = mosfet
+    device_dict[w[0]]['nf'] = nf
+    device_dict[w[0]]['W_discrete'] = w_discrete
+    device_dict[w[0]]['W_continuous'] = w[1]
+
+# generate a yaml file that contain the strong arm size info
+with open('/autofs/fs1.ece/fs1.eecg.tcc/lizongh2/sky130_comparator/comparator_transfer_learning/pex/laygo2_example/strong_arm/strong_arm_device_size.yaml', 'w') as outfile:
+    yaml.dump(device_dict, outfile, default_flow_style=False)
+
+
+
+
+
