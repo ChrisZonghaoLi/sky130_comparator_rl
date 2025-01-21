@@ -1,0 +1,40 @@
+* transient analysis clk-2-Q
+tran 1p 3n
+plot v(Vclk) v(Vclk_bar)
+plot v(Vout_n) v(Vout_p)
+plot {Vout_p-Vout_n}
+plot v(Di_p) v(Di_n)
+plot v(Q) v(Q_bar)
+*wrdata double_tail_comp_pex_tb_Voutn_opt_final Vout_n 
+*wrdata double_tail_comp_pex_tb_Voutp_opt_final Vout_p 
+*wrdata double_tail_comp_pex_tb_Vdip_opt_final Di_p 
+*wrdata double_tail_comp_pex_tb_Vdin_opt_final Di_n 
+*wrdata double_tail_comp_pex_tb_Vclk_opt_final Vclk
+
+* kickback noise
+*wrdata double_tail_comp_pex_tb_Vn_kn_opt_final Vn_kn 
+*wrdata double_tail_comp_pex_tb_Vp_kn_opt_final Vp_kn 
+plot {Vp_kn-Vn_kn}
+
+* power consumption
+plot @Rdummy[i]
+*wrdata double_tail_comp_pex_tb_Ibias_opt_final @Rdummy[i]
+
+* metastability
+plot {Vout_p_ms-Vout_n_ms}
+plot Vout_p_ms Vout_n_ms
+*wrdata double_tail_comp_pex_tb_Voutn_ms_opt_final Vout_n_ms 
+*wrdata double_tail_comp_pex_tb_Voutp_ms_opt_final Vout_p_ms 
+
+* with mc analysis
+*repeat 1
+*  tran 100p 1u
+*  set appendwrite
+*  wrdata double_tail_comp_pex_tb_Vsc_mc_opt_final Vsc
+*  wrdata double_tail_comp_pex_tb_Voutn_mc_opt_final Vout_n_mc
+*  wrdata double_tail_comp_pex_tb_Voutp_mc_opt_final Vout_p_mc
+*  reset
+*end
+*plot v(Vsc) v(Vcm) v(Vout_p_mc) v(Vout_n_mc)
+
+

@@ -1,0 +1,198 @@
+** sch_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/strong_arm_comp_tb.sch
+**.subckt strong_arm_comp_tb Vout_n Vout_p Q Q_bar Vout_n_mc Vout_p_mc Vout_n_ms Vout_p_ms Vout_n_kn
+*+ Vout_p_kn Vout_n_hy Vout_p_hy Di_p Di_n Di_p_hy Di_n_hy Di_p_ms Di_n_ms Di_p_kn Di_n_kn Di_p_mc Di_n_mc
+*.opin Vout_n
+*.opin Vout_p
+*.opin Q
+*.opin Q_bar
+*.opin Vout_n_mc
+*.opin Vout_p_mc
+*.opin Vout_n_ms
+*.opin Vout_p_ms
+*.opin Vout_n_kn
+*.opin Vout_p_kn
+*.opin Vout_n_hy
+*.opin Vout_p_hy
+*.opin Di_p
+*.opin Di_n
+*.opin Di_p_hy
+*.opin Di_n_hy
+*.opin Di_p_ms
+*.opin Di_n_ms
+*.opin Di_p_kn
+*.opin Di_n_kn
+*.opin Di_p_mc
+*.opin Di_n_mc
+VDD net15 net14 VDD
+Vclk Vclk GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vcm Vcm GND dc Vcm
+Vdiff net2 Vcm dc Vin
+C2 Q_bar GND 10f m=1
+C3 Q GND 10f m=1
+Rdummy net14 GND 0.01 m=1
+VDD1 net1 GND VDD
+x1 net15 Vout_n Vout_p Di_p Di_n net2 Vcm Vclk GND strong_arm_comp
+VDD2 net5 GND VDD
+Vclk1 net3 GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vcm1 net4 GND dc Vcm
+x3 net5 Vout_n_mc Vout_p_mc Di_p_mc Di_n_mc Vsc net4 net3 GND strong_arm_comp
+ASRC1 %v([ Vsc ]) filesrc
+VDD3 net8 GND VDD
+Vclk2 net6 GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vcm2 net7 GND dc Vcm
+x4 net8 Vout_n_ms Vout_p_ms Di_p_ms Di_n_ms net9 net7 net6 GND strong_arm_comp
+Vdiff1 net9 net7 dc Vin_min
+VDD4 net12 GND VDD
+Vclk3 net10 GND PULSE(0 VDD Tdelay Tr Tf Tclk_pk Tclk 0)
+Vcm3 net11 GND dc Vcm
+x5 net12 Vout_n_kn Vout_p_kn Di_p_kn Di_n_kn Vp_kn Vn_kn net10 GND strong_arm_comp
+Vdiff2 net13 net11 dc Vin
+Rdummyp net13 Vp_kn 8k m=1
+Rdummyn net11 Vn_kn 8k m=1
+x2 net1 Vout_p Q Vout_n Q_bar RS_latch
+VDD5 net18 GND VDD
+Vclk4 net16 GND dc VDD
+Vcm4 net17 GND dc Vcm
+x6 net18 Vout_n_hy Vout_p_hy Di_p_hy Di_n_hy Vsc_hy net17 net16 GND strong_arm_comp
+ASRC2 %v([ Vsc_hy ]) filesrc
+**** begin user architecture code
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include /usr/local/share/pdk/sky130A/libs.tech/ngspice/corners/tt.spice
+.include /usr/local/share/pdk/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include /usr/local/share/pdk/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include /usr/local/share/pdk/sky130A/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+
+
+*.OPTIONS maxord=1
+*.OPTIONS itl1=200
+*.OPTIONS itl2=200
+*.OPTIONS itl4=200
+
+* save all voltage and current
+.save all
+.options savecurrents
+.options seed=random
+
+.nodeset V(Vout_n) = 0
+.nodeset V(Vout_p) = 0
+.nodeset V(Q) = 0
+.nodeset V(Q_bar) = 0
+
+.nodeset V(Vout_n_mc) = 0
+.nodeset V(Vout_p_mc) = 0
+
+.nodeset V(Vout_n_ms) = 0
+.nodeset V(Vout_p_ms) = 0
+
+*.nodeset V(x6.Di_p) = 1.8
+*.nodeset V(x6.Di_n) = 1.62
+
+.control
+set filetype=ascii
+set units=degrees
+
+.include /autofs/fs1.ece/fs1.eecg.tcc/lizongh2/sky130_comparator/xschem/simulations/strong_arm_comp_tb_vars.spice
+.include /autofs/fs1.ece/fs1.eecg.tcc/lizongh2/sky130_comparator/xschem/simulations/strong_arm_comp_tb_analyses.spice
+
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  strong_arm_comp.sym # of pins=9
+** sym_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/strong_arm_comp.sym
+** sch_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/strong_arm_comp.sch
+.subckt strong_arm_comp VDD Vout_n Vout_p Di_p Di_n Vin_p Vin_n CLK VSS
+*.ipin Vin_p
+*.ipin Vin_n
+*.ipin CLK
+*.iopin VDD
+*.opin Vout_n
+*.opin Vout_p
+*.iopin VSS
+*.opin Di_n
+*.opin Di_p
+XM1 Di_n Vin_p net1 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=W_M1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 Di_p Vin_n net1 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=W_M2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 Vout_n Vout_p Di_n VSS sky130_fd_pr__nfet_01v8 L=0.15 W=W_M3 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM4 Vout_p Vout_n Di_p VSS sky130_fd_pr__nfet_01v8 L=0.15 W=W_M4 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM5 Vout_n Vout_p VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM6 Vout_p Vout_n VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M6 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM9 Vout_p CLK VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M9 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM8 Vout_n CLK VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M8 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM7 net1 CLK VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=W_M7 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM10 Di_n CLK VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M10 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM11 Di_p CLK VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=W_M11 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  RS_latch.sym # of pins=5
+** sym_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/RS_latch.sym
+** sch_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/RS_latch.sch
+.subckt RS_latch VDD R Q S Q_bar
+*.iopin VDD
+*.opin Q
+*.opin Q_bar
+*.ipin R
+*.ipin S
+x1 VDD R Q_bar Q nor
+x2 VDD Q S Q_bar nor
+.ends
+
+
+* expanding   symbol:  nor.sym # of pins=4
+** sym_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/nor.sym
+** sch_path: /fs1/eecg/tcc/lizongh2/sky130_comparator/xschem/nor.sch
+.subckt nor VDD A B out
+*.iopin VDD
+*.ipin A
+*.ipin B
+*.opin out
+XM1 out B GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=0.42 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 out A GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=0.42 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 out B net1 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.84 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net1 A VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.84 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+.GLOBAL GND
+**** begin user architecture code
+
+.model filesrc filesource (file="staircase_voltage_hysteresis.txt" amploffset=[Vcm] amplscale=[1]
++ timeoffset=0 timescale=1 timerelative=false amplstep=false)
+
+**** end user architecture code
+.end

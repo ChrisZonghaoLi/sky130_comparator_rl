@@ -1,0 +1,49 @@
+* transient analysis clk-2-Q
+tran 1p 3n
+plot v(Vclk)
+plot v(Vout_n) v(Vout_p)
+plot v(Di_p) v(Di_n)
+plot v(Q) v(Q_bar)
+*wrdata strong_arm_comp_pex_tb_Voutn_opt_final Vout_n 
+*wrdata strong_arm_comp_pex_tb_Voutp_opt_final Vout_p 
+*wrdata strong_arm_comp_pex_tb_Vdip_opt_final x1.Di_p 
+*wrdata strong_arm_comp_pex_tb_Vdin_opt_final x1.Di_n 
+*wrdata strong_arm_comp_pex_tb_Vclk_opt_final Vclk
+
+* kickback noise
+*wrdata strong_arm_comp_pex_tb_Vn_kn_opt_final Vn_kn 
+*wrdata strong_arm_comp_pex_tb_Vp_kn_opt_final Vp_kn 
+plot {Vp_kn-Vn_kn}
+
+* power consumption
+plot @Rdummy[i]
+*wrdata strong_arm_comp_pex_tb_Ibias_opt_final @Rdummy[i]
+
+* metastability
+plot {Vout_p_ms-Vout_n_ms}
+plot Vout_p_ms Vout_n_ms
+*wrdata strong_arm_comp_pex_tb_Voutn_ms_opt_final Vout_n_ms 
+*wrdata strong_arm_comp_pex_tb_Voutp_ms_opt_final Vout_p_ms 
+
+* with hysteresis analysis run this with tt wo mismatch
+*repeat 1
+*  tran 100p 1u
+*  wrdata strong_arm_comp_pex_tb_Vsc_hy_opt_final Vsc
+*  wrdata strong_arm_comp_pex_tb_Voutn_hy_opt_final Vout_n_mc
+*  wrdata strong_arm_comp_pex_tb_Voutp_hy_opt_final Vout_p_mc
+*  reset
+*end
+*plot {v(Vout_p_hy)-v(Vout_n_hy)} v(Vsc_hy) v(Vcm)
+
+* with mc analysis
+repeat 1
+  tran 100p 1u
+  set appendwrite
+*  wrdata strong_arm_comp_pex_tb_Vsc_mc_opt_final Vsc
+*  wrdata strong_arm_comp_pex_tb_Voutn_mc_opt_final Vout_n_mc
+*  wrdata strong_arm_comp_pex_tb_Voutp_mc_opt_final Vout_p_mc
+  reset
+end
+plot {v(Vout_p_mc)-v(Vout_n_mc)} v(Vsc) v(Vcm)
+
+
