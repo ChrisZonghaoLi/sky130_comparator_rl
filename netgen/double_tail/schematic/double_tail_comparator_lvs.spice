@@ -1,0 +1,14 @@
+.subckt double_tail_comp CLK Vin_p Vin_n Di_n Di_p Vout_n Vout_p CLK_bar VDD VSS
+XM1 Di_n Vin_p net1 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=8.4 nf=10
+XM2 Di_p Vin_n net1 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=8.4 nf=10
+XM3 Di_n CLK VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.84 nf=2
+XM4 Di_p CLK VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.84 nf=2
+XM5 net1 CLK VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=5.04 nf=12
+XM6 Vout_p Di_n VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.84 nf=4
+XM7 Vout_p Vout_n VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.84 nf=2
+XM8 Vout_n Vout_p VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.84 nf=2
+XM9 Vout_n Di_p VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.84 nf=4
+XM10 Vout_p Vout_n net2 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.84 nf=2
+XM11 Vout_n Vout_p net2 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.84 nf=2
+XM12 net2 CLK_bar VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=10.08 nf=12
+.ends double_tail_comp

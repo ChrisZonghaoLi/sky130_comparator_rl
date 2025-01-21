@@ -1,0 +1,70 @@
+
+Circuit 1 cell sky130_fd_pr__nfet_01v8 and Circuit 2 cell sky130_fd_pr__nfet_01v8 are black boxes.
+Warning: Equate pins:  cell sky130_fd_pr__nfet_01v8 is a placeholder, treated as a black box.
+Warning: Equate pins:  cell sky130_fd_pr__nfet_01v8 is a placeholder, treated as a black box.
+
+Subcircuit pins:
+Circuit 1: sky130_fd_pr__nfet_01v8         |Circuit 2: sky130_fd_pr__nfet_01v8         
+-------------------------------------------|-------------------------------------------
+1                                          |1                                          
+2                                          |2                                          
+3                                          |3                                          
+4                                          |4                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes sky130_fd_pr__nfet_01v8 and sky130_fd_pr__nfet_01v8 are equivalent.
+
+Circuit 1 cell sky130_fd_pr__pfet_01v8 and Circuit 2 cell sky130_fd_pr__pfet_01v8 are black boxes.
+Warning: Equate pins:  cell sky130_fd_pr__pfet_01v8 is a placeholder, treated as a black box.
+Warning: Equate pins:  cell sky130_fd_pr__pfet_01v8 is a placeholder, treated as a black box.
+
+Subcircuit pins:
+Circuit 1: sky130_fd_pr__pfet_01v8         |Circuit 2: sky130_fd_pr__pfet_01v8         
+-------------------------------------------|-------------------------------------------
+1                                          |1                                          
+2                                          |2                                          
+3                                          |3                                          
+4                                          |4                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes sky130_fd_pr__pfet_01v8 and sky130_fd_pr__pfet_01v8 are equivalent.
+
+Class double_tail_comparator_lvs (0):  Merged 52 parallel devices.
+Subcircuit summary:
+Circuit 1: double_tail_comparator_lvs      |Circuit 2: double_tail_comp                
+-------------------------------------------|-------------------------------------------
+sky130_fd_pr__nfet_01v8 (44->7)            |sky130_fd_pr__nfet_01v8 (7)                
+sky130_fd_pr__pfet_01v8 (20->5)            |sky130_fd_pr__pfet_01v8 (5)                
+Number of devices: 12                      |Number of devices: 12                      
+Number of nets: 12                         |Number of nets: 12                         
+---------------------------------------------------------------------------------------
+Resolving symmetries by property value.
+Resolving symmetries by pin name.
+Netlists match uniquely with property errors.
+sky130_fd_pr__nfet_01v8:3 vs. sky130_fd_pr__nfet_01v8:M6:
+ w circuit1: 1.68   circuit2: 0.84   (delta=66.7%, cutoff=1%)
+sky130_fd_pr__nfet_01v8:44 vs. sky130_fd_pr__nfet_01v8:M9:
+ w circuit1: 1.68   circuit2: 0.84   (delta=66.7%, cutoff=1%)
+
+Subcircuit pins:
+Circuit 1: double_tail_comparator_lvs      |Circuit 2: double_tail_comp                
+-------------------------------------------|-------------------------------------------
+VDD                                        |VDD                                        
+Vin_n                                      |Vin_n                                      
+Vin_p                                      |Vin_p                                      
+CLK_bar                                    |CLK_bar                                    
+Vout_n                                     |Vout_n                                     
+Vout_p                                     |Vout_p                                     
+Di_p                                       |Di_p                                       
+Di_n                                       |Di_n                                       
+CLK                                        |CLK                                        
+VSS                                        |VSS                                        
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes double_tail_comparator_lvs and double_tail_comp are equivalent.
+
+Final result: Circuits match uniquely.
+Property errors were found.
+
+The following cells had property errors:
+ double_tail_comparator_lvs

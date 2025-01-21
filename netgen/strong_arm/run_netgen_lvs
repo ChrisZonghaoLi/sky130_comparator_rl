@@ -1,0 +1,2 @@
+netgen -batch lvs "./TCL/strong_arm_comparator_lvs.spice strong_arm_comparator_lvs" "./schematic/strong_arm_comparator_lvs.spice strong_arm_comp"
+

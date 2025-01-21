@@ -1,0 +1,2 @@
+netgen -batch lvs "./TCL/double_tail_comparator_lvs.spice double_tail_comparator_lvs" "./schematic/double_tail_comparator_lvs.spice double_tail_comp"
+
