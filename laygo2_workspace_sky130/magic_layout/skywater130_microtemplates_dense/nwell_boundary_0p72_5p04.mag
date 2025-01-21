@@ -1,0 +1,8 @@
+magic
+tech sky130A
+timestamp 1706900718
+<< error_p >>
+rect 72 0 84 504
+<< nwell >>
+rect 0 0 72 504
+<< end >>

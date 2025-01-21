@@ -1,0 +1,353 @@
+double_tail:
+  comparator:
+    bbox:
+    - - -144
+      - -1512
+    - - 2952
+      - 1512
+    cellname: comparator
+    libname: double_tail
+    pins:
+      CLK:
+        layer:
+        - M2
+        - pin
+        name: CLK
+        netname: CLK
+        xy:
+        - - 576
+          - -375
+        - - 1296
+          - -345
+      CLK_bar:
+        layer:
+        - M2
+        - pin
+        name: CLK_bar
+        netname: CLK_bar
+        xy:
+        - - 576
+          - 1137
+        - - 1296
+          - 1167
+      Di_n:
+        layer:
+        - M3
+        - pin
+        name: Di_n
+        netname: Di_n
+        xy:
+        - - 849
+          - -1296
+        - - 879
+          - -720
+      Di_p:
+        layer:
+        - M3
+        - pin
+        name: Di_p
+        netname: Di_p
+        xy:
+        - - 993
+          - -1296
+        - - 1023
+          - -720
+      VDD:
+        layer:
+        - M4
+        - pin
+        name: VDD
+        netname: VDD
+        xy:
+        - - 144
+          - 1462
+        - - 1728
+          - 1562
+      VSS:
+        layer:
+        - M4
+        - pin
+        name: VSS
+        netname: VSS
+        xy:
+        - - 648
+          - -50
+        - - 1224
+          - 50
+      Vin_n:
+        layer:
+        - M2
+        - pin
+        name: Vin_n
+        netname: Vin_n
+        xy:
+        - - 1152
+          - -879
+        - - 1728
+          - -849
+      Vin_p:
+        layer:
+        - M2
+        - pin
+        name: Vin_p
+        netname: Vin_p
+        xy:
+        - - 144
+          - -879
+        - - 720
+          - -849
+      Vout_n:
+        layer:
+        - M2
+        - pin
+        name: Vout_n
+        netname: Vout_n
+        xy:
+        - - 864
+          - 561
+        - - 1080
+          - 591
+      Vout_p:
+        layer:
+        - M2
+        - pin
+        name: Vout_p
+        netname: Vout_p
+        xy:
+        - - 792
+          - 417
+        - - 1008
+          - 447
+  diff_pair:
+    bbox:
+    - - -432
+      - 0
+    - - 1440
+      - 1512
+    cellname: diff_pair
+    libname: double_tail
+    pins:
+      CLK:
+        layer:
+        - M2
+        - pin
+        name: CLK
+        netname: CLK
+        xy:
+        - - 144
+          - 345
+        - - 864
+          - 375
+      Di_n:
+        layer:
+        - M3
+        - pin
+        name: Di_n
+        netname: Di_n
+        xy:
+        - - 417
+          - 720
+        - - 447
+          - 1296
+      Di_p:
+        layer:
+        - M3
+        - pin
+        name: Di_p
+        netname: Di_p
+        xy:
+        - - 561
+          - 720
+        - - 591
+          - 1296
+      VDD:
+        layer:
+        - M2
+        - pin
+        name: VDD
+        netname: VDD
+        xy:
+        - - 144
+          - 1497
+        - - 864
+          - 1527
+      VSS:
+        layer:
+        - M2
+        - pin
+        name: VSS
+        netname: VSS
+        xy:
+        - - -432
+          - -15
+        - - 1440
+          - 15
+      Vin_n:
+        layer:
+        - M2
+        - pin
+        name: Vin_n
+        netname: Vin_n
+        xy:
+        - - 720
+          - 849
+        - - 1296
+          - 879
+      Vin_p:
+        layer:
+        - M2
+        - pin
+        name: Vin_p
+        netname: Vin_p
+        xy:
+        - - -288
+          - 849
+        - - 288
+          - 879
+  dummy:
+    bbox:
+    - - 0
+      - 0
+    - - 0
+      - 0
+    cellname: dummy
+    libname: double_tail
+  inverter:
+    bbox:
+    - - 0
+      - 0
+    - - 288
+      - 1008
+    cellname: inverter
+    libname: double_tail
+    pins:
+      I:
+        layer:
+        - M3
+        - pin
+        name: I
+        netname: I
+        xy:
+        - - 57
+          - 360
+        - - 87
+          - 648
+      O:
+        layer:
+        - M3
+        - pin
+        name: O
+        netname: O
+        xy:
+        - - 129
+          - 216
+        - - 159
+          - 792
+      VDD:
+        layer:
+        - M2
+        - pin
+        name: VDD
+        netname: VDD
+        xy:
+        - - 0
+          - 993
+        - - 288
+          - 1023
+      VSS:
+        layer:
+        - M2
+        - pin
+        name: VSS
+        netname: VSS
+        xy:
+        - - 0
+          - -15
+        - - 288
+          - 15
+  latch:
+    bbox:
+    - - -1008
+      - 0
+    - - 1008
+      - 1512
+    cellname: latch
+    libname: double_tail
+    pins:
+      CLK_bar:
+        layer:
+        - M2
+        - pin
+        name: CLK_bar
+        netname: CLK_bar
+        xy:
+        - - -360
+          - 1137
+        - - 360
+          - 1167
+      Di_n:
+        layer:
+        - M2
+        - pin
+        name: Di_n
+        netname: Di_n
+        xy:
+        - - -576
+          - 345
+        - - -432
+          - 375
+      Di_p:
+        layer:
+        - M2
+        - pin
+        name: Di_p
+        netname: Di_p
+        xy:
+        - - 432
+          - 345
+        - - 576
+          - 375
+      VDD:
+        layer:
+        - M2
+        - pin
+        name: VDD
+        netname: VDD
+        xy:
+        - - -792
+          - 1497
+        - - 792
+          - 1527
+      VSS:
+        layer:
+        - M2
+        - pin
+        name: VSS
+        netname: VSS
+        xy:
+        - - -288
+          - -15
+        - - 288
+          - 15
+      Vout_n:
+        layer:
+        - M2
+        - pin
+        name: Vout_n
+        netname: Vout_n
+        xy:
+        - - -72
+          - 561
+        - - 144
+          - 591
+      Vout_p:
+        layer:
+        - M2
+        - pin
+        name: Vout_p
+        netname: Vout_p
+        xy:
+        - - -144
+          - 417
+        - - 72
+          - 447

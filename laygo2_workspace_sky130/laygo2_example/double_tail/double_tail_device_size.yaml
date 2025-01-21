@@ -1,0 +1,36 @@
+M1:
+  W_continuous: 8.189754198193551
+  W_discrete: 8.4
+  mosfet: nfet_01v8_0p84_nf2
+  nf: 10
+M10:
+  W_continuous: 0.752667883634567
+  W_discrete: 0.84
+  mosfet: pfet_01v8_0p42_nf2
+  nf: 2
+M12:
+  W_continuous: 9.594074639081956
+  W_discrete: 10.08
+  mosfet: pfet_01v8_0p84_nf2
+  nf: 12
+M3:
+  W_continuous: 0.6693031996488568
+  W_discrete: 0.84
+  mosfet: pfet_01v8_0p42_nf2
+  nf: 2
+M5:
+  W_continuous: 4.729764678701758
+  W_discrete: 5.04
+  mosfet: nfet_01v8_0p42_nf2
+  nf: 12
+M6:
+  W_continuous: 1.0326698946952817
+  W_discrete: 0.84
+  mosfet: nfet_01v8_0p42_nf2
+  nf: 4
+M7:
+  W_continuous: 0.5163349473476408
+  W_discrete: 0.84
+  mosfet: nfet_01v8_0p42_nf2
+  nf: 2
+circuit: double_tail

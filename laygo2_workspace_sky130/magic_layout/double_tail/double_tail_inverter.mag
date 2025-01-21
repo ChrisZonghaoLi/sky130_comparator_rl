@@ -1,0 +1,123 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1737400462
+<< metal1 >>
+rect 114 1688 174 2056
+rect 402 1688 462 2056
+rect 114 -40 174 328
+rect 402 -40 462 328
+<< metal2 >>
+rect -20 2046 596 2076
+rect -30 1986 606 2046
+rect -20 1956 596 1986
+rect 108 1554 468 1614
+rect 108 1266 468 1326
+rect 108 690 468 750
+rect 108 402 468 462
+rect -20 30 596 60
+rect -30 -30 606 30
+rect -20 -60 596 -30
+<< metal3 >>
+rect 114 690 174 1326
+rect 258 402 318 1614
+use nmos13_fast_boundary  M7_IBNDL0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1655824928
+transform 1 0 0 0 1 0
+box 0 0 144 1008
+use nmos13_fast_boundary  M7_IBNDR0
+timestamp 1655824928
+transform 1 0 432 0 1 0
+box 0 0 144 1008
+use nfet_01v8_0p42_nf2  M7_IM0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1706310608
+transform 1 0 144 0 1 0
+box -92 287 379 757
+use via_M1_M2_0  M7_IVD0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1709070663
+transform 1 0 288 0 1 432
+box -32 -32 32 32
+use via_M1_M2_0  M7_IVG0
+timestamp 1709070663
+transform 1 0 288 0 1 720
+box -32 -32 32 32
+use via_M1_M2_1  M7_IVTIED0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+array 0 1 288 0 0 1008
+timestamp 1647525606
+transform 1 0 144 0 1 0
+box -32 -32 32 32
+use pmos13_fast_boundary  M10_IBNDL0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1655825313
+transform 1 0 0 0 -1 2016
+box 0 0 144 1008
+use pmos13_fast_boundary  M10_IBNDR0
+timestamp 1655825313
+transform 1 0 432 0 -1 2016
+box 0 0 144 1008
+use pfet_01v8_0p42_nf2  M10_IM0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1706648821
+transform 1 0 144 0 -1 2016
+box -92 132 380 757
+use via_M1_M2_0  M10_IVD0
+timestamp 1709070663
+transform 1 0 288 0 -1 1584
+box -32 -32 32 32
+use via_M1_M2_0  M10_IVG0
+timestamp 1709070663
+transform 1 0 288 0 -1 1296
+box -32 -32 32 32
+use via_M1_M2_1  M10_IVTIED0
+array 0 1 288 0 0 -1008
+timestamp 1647525606
+transform 1 0 144 0 -1 2016
+box -32 -32 32 32
+use via_M2_M3_0  NoName_1 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1709070663
+transform 1 0 144 0 1 720
+box -38 -38 38 38
+use via_M2_M3_0  NoName_3
+timestamp 1709070663
+transform 1 0 144 0 1 1296
+box -38 -38 38 38
+use via_M2_M3_0  NoName_5
+timestamp 1709070663
+transform 1 0 288 0 1 432
+box -38 -38 38 38
+use via_M2_M3_0  NoName_6
+timestamp 1709070663
+transform 1 0 288 0 1 1584
+box -38 -38 38 38
+use nwell_boundary_0p72_5p04  Nwell_M10_IBNDL0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1706900718
+transform 1 0 0 0 -1 2016
+box 0 0 168 1008
+use nwell_boundary_0p72_5p04  Nwell_M10_IBNDR0
+timestamp 1706900718
+transform 1 0 432 0 -1 2016
+box 0 0 168 1008
+use nwell_1p44_5p04  Nwell_M10_IM0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1706848148
+transform 1 0 144 0 -1 2016
+box 0 0 288 1008
+use pwell_boundary_0p72_5p04  Pwell_M7_IBNDL0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1706900133
+transform 1 0 0 0 1 0
+box 0 0 144 1008
+use pwell_boundary_0p72_5p04  Pwell_M7_IBNDR0
+timestamp 1706900133
+transform 1 0 432 0 1 0
+box 0 0 144 1008
+use pwell_1p44_5p04  Pwell_M7_IM0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1706848095
+transform 1 0 144 0 1 0
+box 0 0 288 1008
+<< labels >>
+flabel metal3 144 1008 144 1008 0 FreeSans 480 90 0 0 I
+port 1 nsew
+flabel metal3 288 1008 288 1008 0 FreeSans 480 90 0 0 O
+port 2 nsew
+flabel metal2 288 2016 288 2016 0 FreeSans 480 0 0 0 VDD
+port 3 nsew
+flabel metal2 288 0 288 0 0 FreeSans 480 0 0 0 VSS
+port 4 nsew
+<< end >>

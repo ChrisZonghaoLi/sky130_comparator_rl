@@ -1,0 +1,156 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1706307177
+<< metal1 >>
+rect 258 1420 318 2324
+rect 546 1420 606 2324
+rect -462 968 -402 1336
+rect -174 412 -114 1336
+rect 114 968 174 1336
+rect 690 968 750 1336
+rect 978 412 1038 1336
+rect 1266 968 1326 1336
+rect 114 -40 174 328
+rect 402 -40 462 328
+rect 690 -40 750 328
+<< metal2 >>
+rect -884 1698 76 1758
+rect 788 1698 1748 1758
+rect -364 1410 308 1470
+rect 556 1410 1228 1470
+rect -596 948 308 1068
+rect 556 948 1460 1068
+rect 212 690 652 750
+rect -164 402 1028 462
+rect -40 -60 904 60
+use nmos13_fast_boundary  M1_IBNDL0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1655824928
+transform 1 0 -576 0 1 1008
+box 0 0 144 1008
+use nmos13_fast_boundary  M1_IBNDR0
+timestamp 1655824928
+transform 1 0 144 0 1 1008
+box 0 0 144 1008
+use nfet_01v8_0p84_nf2  M1_IM0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+array 0 1 288 0 0 1008
+timestamp 1706136540
+transform 1 0 -432 0 1 1008
+box -92 287 379 721
+use via_M1_M2_0  M1_IVD0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+array 0 1 288 0 0 1008
+timestamp 1647525606
+transform 1 0 -288 0 1 1440
+box -32 -32 32 32
+use via_M1_M2_0  M1_IVG0
+array 0 1 288 0 0 1008
+timestamp 1647525606
+transform 1 0 -288 0 1 1728
+box -32 -32 32 32
+use via_M1_M2_1  M1_IVTIED0 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+array 0 2 288 0 0 1008
+timestamp 1647525606
+transform 1 0 -432 0 1 1008
+box -32 -32 32 32
+use nmos13_fast_boundary  M2_IBNDL0
+timestamp 1655824928
+transform 1 0 576 0 1 1008
+box 0 0 144 1008
+use nmos13_fast_boundary  M2_IBNDR0
+timestamp 1655824928
+transform 1 0 1296 0 1 1008
+box 0 0 144 1008
+use nfet_01v8_0p84_nf2  M2_IM0
+array 0 1 288 0 0 1008
+timestamp 1706136540
+transform 1 0 720 0 1 1008
+box -92 287 379 721
+use via_M1_M2_0  M2_IVD0
+array 0 1 288 0 0 1008
+timestamp 1647525606
+transform 1 0 864 0 1 1440
+box -32 -32 32 32
+use via_M1_M2_0  M2_IVG0
+array 0 1 288 0 0 1008
+timestamp 1647525606
+transform 1 0 864 0 1 1728
+box -32 -32 32 32
+use via_M1_M2_1  M2_IVTIED0
+array 0 2 288 0 0 1008
+timestamp 1647525606
+transform 1 0 720 0 1 1008
+box -32 -32 32 32
+use nmos13_fast_boundary  M7_IBNDL0
+timestamp 1655824928
+transform 1 0 0 0 1 0
+box 0 0 144 1008
+use nmos13_fast_boundary  M7_IBNDR0
+timestamp 1655824928
+transform 1 0 720 0 1 0
+box 0 0 144 1008
+use nfet_01v8_0p84_nf2  M7_IM0
+array 0 1 288 0 0 1008
+timestamp 1706136540
+transform 1 0 144 0 1 0
+box -92 287 379 721
+use via_M1_M2_0  M7_IVD0
+array 0 1 288 0 0 1008
+timestamp 1647525606
+transform 1 0 288 0 1 432
+box -32 -32 32 32
+use via_M1_M2_0  M7_IVG0
+array 0 1 288 0 0 1008
+timestamp 1647525606
+transform 1 0 288 0 1 720
+box -32 -32 32 32
+use via_M1_M2_1  M7_IVTIED0
+array 0 2 288 0 0 1008
+timestamp 1647525606
+transform 1 0 144 0 1 0
+box -32 -32 32 32
+use via_M1_M2_0  NoName_4
+timestamp 1647525606
+transform 1 0 -144 0 1 432
+box -32 -32 32 32
+use via_M1_M2_0  NoName_5
+timestamp 1647525606
+transform 1 0 -144 0 1 1008
+box -32 -32 32 32
+use via_M1_M2_0  NoName_7
+timestamp 1647525606
+transform 1 0 1008 0 1 432
+box -32 -32 32 32
+use via_M1_M2_0  NoName_8
+timestamp 1647525606
+transform 1 0 1008 0 1 1008
+box -32 -32 32 32
+use via_M1_M2_0  NoName_11
+timestamp 1647525606
+transform 1 0 288 0 1 1440
+box -32 -32 32 32
+use via_M1_M2_0  NoName_12
+timestamp 1647525606
+transform 1 0 288 0 1 2304
+box -32 -32 32 32
+use via_M1_M2_0  NoName_16
+timestamp 1647525606
+transform 1 0 576 0 1 1440
+box -32 -32 32 32
+use via_M1_M2_0  NoName_17
+timestamp 1647525606
+transform 1 0 576 0 1 2304
+box -32 -32 32 32
+<< labels >>
+flabel metal2 360 720 360 720 0 FreeSans 480 0 0 0 CLK
+port 1 nsew
+flabel metal1 288 1872 288 1872 0 FreeSans 480 90 0 0 Di_n
+port 2 nsew
+flabel metal1 576 1872 576 1872 0 FreeSans 480 90 0 0 Di_p
+port 3 nsew
+flabel metal2 432 0 432 0 0 FreeSans 960 0 0 0 VSS
+port 4 nsew
+flabel metal2 1440 1728 1440 1728 0 FreeSans 480 0 0 0 Vin_n
+port 5 nsew
+flabel metal2 -576 1728 -576 1728 0 FreeSans 480 0 0 0 Vin_p
+port 6 nsew
+<< end >>

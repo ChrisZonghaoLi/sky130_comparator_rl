@@ -1,0 +1,433 @@
+magic
+tech sky130A
+timestamp 1737400462
+<< metal2 >>
+rect 576 1137 1296 1167
+rect 864 561 1080 591
+rect 792 417 1008 447
+rect 576 -375 1296 -345
+rect 345 -735 879 -705
+rect 993 -735 1527 -705
+rect 144 -879 720 -849
+rect 1152 -879 1728 -849
+<< metal3 >>
+rect 114 1482 1758 1542
+rect 345 -735 375 375
+rect 618 -30 1254 30
+rect 849 -1296 879 -720
+rect 993 -1296 1023 -720
+rect 1497 -735 1527 375
+rect 546 -1542 1326 -1482
+<< metal4 >>
+rect -204 1462 2076 1562
+rect 618 -50 1254 50
+rect -204 -1562 2076 -1462
+<< metal5 >>
+rect -224 -1572 -64 1572
+rect 1936 -1572 2096 1572
+use double_tail_diff_pair  diff_pair
+timestamp 1737400462
+transform 1 0 432 0 -1 0
+box -462 -30 1470 1542
+use double_tail_latch  latch
+timestamp 1737400462
+transform 1 0 936 0 1 0
+box -1038 -30 1038 1542
+use via_M2_M3_0  NoName_1 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1709070663
+transform 1 0 1512 0 1 -720
+box -19 -19 19 19
+use via_M2_M3_0  NoName_2
+timestamp 1709070663
+transform 1 0 1512 0 1 360
+box -19 -19 19 19
+use via_M2_M3_0  NoName_5
+timestamp 1709070663
+transform 1 0 360 0 1 -720
+box -19 -19 19 19
+use via_M2_M3_0  NoName_6
+timestamp 1709070663
+transform 1 0 360 0 1 360
+box -19 -19 19 19
+use via_M2_M3_0  NoName_8
+timestamp 1709070663
+transform 1 0 144 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_9
+timestamp 1709070663
+transform 1 0 216 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_10
+timestamp 1709070663
+transform 1 0 288 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_11
+timestamp 1709070663
+transform 1 0 360 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_12
+timestamp 1709070663
+transform 1 0 432 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_13
+timestamp 1709070663
+transform 1 0 504 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_14
+timestamp 1709070663
+transform 1 0 576 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_15
+timestamp 1709070663
+transform 1 0 648 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_16
+timestamp 1709070663
+transform 1 0 720 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_17
+timestamp 1709070663
+transform 1 0 792 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_18
+timestamp 1709070663
+transform 1 0 864 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_19
+timestamp 1709070663
+transform 1 0 936 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_20
+timestamp 1709070663
+transform 1 0 1008 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_21
+timestamp 1709070663
+transform 1 0 1080 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_22
+timestamp 1709070663
+transform 1 0 1152 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_23
+timestamp 1709070663
+transform 1 0 1224 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_24
+timestamp 1709070663
+transform 1 0 1296 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_25
+timestamp 1709070663
+transform 1 0 1368 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_26
+timestamp 1709070663
+transform 1 0 1440 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_27
+timestamp 1709070663
+transform 1 0 1512 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_28
+timestamp 1709070663
+transform 1 0 1584 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_29
+timestamp 1709070663
+transform 1 0 1656 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_30
+timestamp 1709070663
+transform 1 0 1728 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_32 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1709070663
+transform 1 0 144 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_33
+timestamp 1709070663
+transform 1 0 216 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_34
+timestamp 1709070663
+transform 1 0 288 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_35
+timestamp 1709070663
+transform 1 0 360 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_36
+timestamp 1709070663
+transform 1 0 432 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_37
+timestamp 1709070663
+transform 1 0 504 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_38
+timestamp 1709070663
+transform 1 0 576 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_39
+timestamp 1709070663
+transform 1 0 648 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_40
+timestamp 1709070663
+transform 1 0 720 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_41
+timestamp 1709070663
+transform 1 0 792 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_42
+timestamp 1709070663
+transform 1 0 864 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_43
+timestamp 1709070663
+transform 1 0 936 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_44
+timestamp 1709070663
+transform 1 0 1008 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_45
+timestamp 1709070663
+transform 1 0 1080 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_46
+timestamp 1709070663
+transform 1 0 1152 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_47
+timestamp 1709070663
+transform 1 0 1224 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_48
+timestamp 1709070663
+transform 1 0 1296 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_49
+timestamp 1709070663
+transform 1 0 1368 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_50
+timestamp 1709070663
+transform 1 0 1440 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_51
+timestamp 1709070663
+transform 1 0 1512 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_52
+timestamp 1709070663
+transform 1 0 1584 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_53
+timestamp 1709070663
+transform 1 0 1656 0 1 1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_54
+timestamp 1709070663
+transform 1 0 1728 0 1 1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_56
+timestamp 1709070663
+transform 1 0 576 0 1 -1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_57
+timestamp 1709070663
+transform 1 0 648 0 1 -1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_58
+timestamp 1709070663
+transform 1 0 720 0 1 -1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_59
+timestamp 1709070663
+transform 1 0 792 0 1 -1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_60
+timestamp 1709070663
+transform 1 0 864 0 1 -1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_61
+timestamp 1709070663
+transform 1 0 936 0 1 -1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_62
+timestamp 1709070663
+transform 1 0 1008 0 1 -1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_63
+timestamp 1709070663
+transform 1 0 1080 0 1 -1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_64
+timestamp 1709070663
+transform 1 0 1152 0 1 -1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_65
+timestamp 1709070663
+transform 1 0 1224 0 1 -1512
+box -19 -19 19 19
+use via_M2_M3_0  NoName_66
+timestamp 1709070663
+transform 1 0 1296 0 1 -1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_68
+timestamp 1709070663
+transform 1 0 576 0 1 -1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_69
+timestamp 1709070663
+transform 1 0 648 0 1 -1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_70
+timestamp 1709070663
+transform 1 0 720 0 1 -1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_71
+timestamp 1709070663
+transform 1 0 792 0 1 -1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_72
+timestamp 1709070663
+transform 1 0 864 0 1 -1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_73
+timestamp 1709070663
+transform 1 0 936 0 1 -1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_74
+timestamp 1709070663
+transform 1 0 1008 0 1 -1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_75
+timestamp 1709070663
+transform 1 0 1080 0 1 -1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_76
+timestamp 1709070663
+transform 1 0 1152 0 1 -1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_77
+timestamp 1709070663
+transform 1 0 1224 0 1 -1512
+box -19 -19 19 19
+use via_M3_M4_0  NoName_78
+timestamp 1709070663
+transform 1 0 1296 0 1 -1512
+box -19 -19 19 19
+use via_M4_M5_0  NoName_81 ~/laygo2_workspace_sky130/magic_layout/skywater130_microtemplates_dense
+timestamp 1709070663
+transform 1 0 -144 0 1 -1512
+box -100 -100 100 100
+use via_M4_M5_0  NoName_83
+timestamp 1709070663
+transform 1 0 -144 0 1 1512
+box -100 -100 100 100
+use via_M4_M5_0  NoName_86
+timestamp 1709070663
+transform 1 0 2016 0 1 -1512
+box -100 -100 100 100
+use via_M4_M5_0  NoName_88
+timestamp 1709070663
+transform 1 0 2016 0 1 1512
+box -100 -100 100 100
+use via_M2_M3_0  NoName_90
+timestamp 1709070663
+transform 1 0 648 0 1 0
+box -19 -19 19 19
+use via_M2_M3_0  NoName_91
+timestamp 1709070663
+transform 1 0 720 0 1 0
+box -19 -19 19 19
+use via_M2_M3_0  NoName_92
+timestamp 1709070663
+transform 1 0 792 0 1 0
+box -19 -19 19 19
+use via_M2_M3_0  NoName_93
+timestamp 1709070663
+transform 1 0 864 0 1 0
+box -19 -19 19 19
+use via_M2_M3_0  NoName_94
+timestamp 1709070663
+transform 1 0 936 0 1 0
+box -19 -19 19 19
+use via_M2_M3_0  NoName_95
+timestamp 1709070663
+transform 1 0 1008 0 1 0
+box -19 -19 19 19
+use via_M2_M3_0  NoName_96
+timestamp 1709070663
+transform 1 0 1080 0 1 0
+box -19 -19 19 19
+use via_M2_M3_0  NoName_97
+timestamp 1709070663
+transform 1 0 1152 0 1 0
+box -19 -19 19 19
+use via_M2_M3_0  NoName_98
+timestamp 1709070663
+transform 1 0 1224 0 1 0
+box -19 -19 19 19
+use via_M3_M4_0  NoName_100
+timestamp 1709070663
+transform 1 0 648 0 1 0
+box -19 -19 19 19
+use via_M3_M4_0  NoName_101
+timestamp 1709070663
+transform 1 0 720 0 1 0
+box -19 -19 19 19
+use via_M3_M4_0  NoName_102
+timestamp 1709070663
+transform 1 0 792 0 1 0
+box -19 -19 19 19
+use via_M3_M4_0  NoName_103
+timestamp 1709070663
+transform 1 0 864 0 1 0
+box -19 -19 19 19
+use via_M3_M4_0  NoName_104
+timestamp 1709070663
+transform 1 0 936 0 1 0
+box -19 -19 19 19
+use via_M3_M4_0  NoName_105
+timestamp 1709070663
+transform 1 0 1008 0 1 0
+box -19 -19 19 19
+use via_M3_M4_0  NoName_106
+timestamp 1709070663
+transform 1 0 1080 0 1 0
+box -19 -19 19 19
+use via_M3_M4_0  NoName_107
+timestamp 1709070663
+transform 1 0 1152 0 1 0
+box -19 -19 19 19
+use via_M3_M4_0  NoName_108
+timestamp 1709070663
+transform 1 0 1224 0 1 0
+box -19 -19 19 19
+<< labels >>
+flabel metal2 936 -360 936 -360 0 FreeSans 240 0 0 0 CLK
+port 1 nsew
+flabel metal2 936 1152 936 1152 0 FreeSans 240 0 0 0 CLK_bar
+port 2 nsew
+flabel metal3 864 -1008 864 -1008 0 FreeSans 240 90 0 0 Di_n
+port 3 nsew
+flabel metal3 1008 -1008 1008 -1008 0 FreeSans 240 90 0 0 Di_p
+port 4 nsew
+flabel metal4 936 1512 936 1512 0 FreeSans 800 0 0 0 VDD
+port 5 nsew
+flabel metal4 936 0 936 0 0 FreeSans 800 0 0 0 VSS
+port 6 nsew
+flabel metal2 1440 -864 1440 -864 0 FreeSans 240 0 0 0 Vin_n
+port 7 nsew
+flabel metal2 432 -864 432 -864 0 FreeSans 240 0 0 0 Vin_p
+port 8 nsew
+flabel metal2 972 576 972 576 0 FreeSans 240 0 0 0 Vout_n
+port 9 nsew
+flabel metal2 900 432 900 432 0 FreeSans 240 0 0 0 Vout_p
+port 10 nsew
+<< end >>

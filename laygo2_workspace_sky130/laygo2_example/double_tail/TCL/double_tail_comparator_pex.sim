@@ -1,0 +1,112 @@
+| units: 500000 tech: sky130A format: MIT
+x CLK a_88_n1613# VSS VSS s=4746,197 d=4830,199 l=30 w=84 x=1784 y=-520 sky130_fd_pr__nfet_01v8
+x CLK VSS a_88_n1613# VSS s=4830,199 d=4746,197 l=30 w=84 x=1929 y=-520 sky130_fd_pr__nfet_01v8
+x CLK VSS a_88_n1613# VSS s=9492,394 d=4746,197 l=30 w=84 x=1065 y=-520 sky130_fd_pr__nfet_01v8
+x Di_n VSS Vout_p VSS s=9492,394 d=4746,197 l=30 w=84 x=633 y=437 sky130_fd_pr__nfet_01v8
+x Di_n VSS Vout_p VSS s=4830,199 d=4746,197 l=30 w=84 x=921 y=437 sky130_fd_pr__nfet_01v8
+x Vin_p Di_n a_88_n1613# VSS s=9492,281 d=9660,283 l=30 w=168 x=632 y=-1612 sky130_fd_pr__nfet_01v8
+x Vin_n Di_p a_88_n1613# VSS s=9492,281 d=9660,283 l=30 w=168 x=2360 y=-1612 sky130_fd_pr__nfet_01v8
+x Vout_n VSS Vout_p VSS s=9492,394 d=4746,197 l=30 w=84 x=1498 y=437 sky130_fd_pr__nfet_01v8
+x CLK VSS a_88_n1613# VSS s=4830,199 d=4746,197 l=30 w=84 x=1353 y=-520 sky130_fd_pr__nfet_01v8
+x Vin_n a_88_n1613# Di_p VSS s=9660,283 d=9492,281 l=30 w=168 x=2793 y=-1612 sky130_fd_pr__nfet_01v8
+x Vout_p Vout_n VSS VSS s=4746,197 d=9492,394 l=30 w=84 x=2216 y=437 sky130_fd_pr__nfet_01v8
+x CLK_bar latch.inv0.VDD VDD VDD s=9492,281 d=9660,283 l=30 w=168 x=1496 y=2419 sky130_fd_pr__pfet_01v8
+x CLK VSS a_88_n1613# VSS s=4830,199 d=4746,197 l=30 w=84 x=1641 y=-520 sky130_fd_pr__nfet_01v8
+x Vout_p Vout_n latch.inv0.VDD VDD s=4746,197 d=9492,394 l=30 w=84 x=2216 y=1495 sky130_fd_pr__pfet_01v8
+x Vin_p Di_n a_88_n1613# VSS s=9492,281 d=9660,283 l=30 w=168 x=1208 y=-1612 sky130_fd_pr__nfet_01v8
+x CLK_bar latch.inv0.VDD VDD VDD s=9492,281 d=9660,283 l=30 w=168 x=1784 y=2419 sky130_fd_pr__pfet_01v8
+x Di_n Vout_p VSS VSS s=4746,197 d=4830,199 l=30 w=84 x=776 y=437 sky130_fd_pr__nfet_01v8
+x Vin_n a_88_n1613# Di_p VSS s=18984,562 d=9492,281 l=30 w=168 x=2217 y=-1612 sky130_fd_pr__nfet_01v8
+x CLK_bar VDD latch.inv0.VDD VDD s=18984,562 d=9492,281 l=30 w=168 x=1065 y=2419 sky130_fd_pr__pfet_01v8
+x CLK_bar VDD latch.inv0.VDD VDD s=9660,283 d=9492,281 l=30 w=168 x=1929 y=2419 sky130_fd_pr__pfet_01v8
+x CLK a_88_n1613# VSS VSS s=4746,197 d=9492,394 l=30 w=84 x=2648 y=-520 sky130_fd_pr__nfet_01v8
+x Di_n Vout_p VSS VSS s=4746,197 d=9492,394 l=30 w=84 x=1064 y=437 sky130_fd_pr__nfet_01v8
+x Vin_n a_88_n1613# Di_p VSS s=9660,283 d=9492,281 l=30 w=168 x=3369 y=-1612 sky130_fd_pr__nfet_01v8
+x CLK Di_p VDD VDD s=4746,197 d=9492,394 l=30 w=84 x=2360 y=-2586 sky130_fd_pr__pfet_01v8
+x CLK_bar VDD latch.inv0.VDD VDD s=9660,283 d=9492,281 l=30 w=168 x=1353 y=2419 sky130_fd_pr__pfet_01v8
+x CLK a_88_n1613# VSS VSS s=4746,197 d=4830,199 l=30 w=84 x=2072 y=-520 sky130_fd_pr__nfet_01v8
+x CLK VSS a_88_n1613# VSS s=4830,199 d=4746,197 l=30 w=84 x=2217 y=-520 sky130_fd_pr__nfet_01v8
+x Vin_p a_88_n1613# Di_n VSS s=18984,562 d=9492,281 l=30 w=168 x=201 y=-1612 sky130_fd_pr__nfet_01v8
+x Vin_p a_88_n1613# Di_n VSS s=9660,283 d=9492,281 l=30 w=168 x=1353 y=-1612 sky130_fd_pr__nfet_01v8
+x CLK a_88_n1613# VSS VSS s=4746,197 d=4830,199 l=30 w=84 x=2360 y=-520 sky130_fd_pr__nfet_01v8
+x Vin_p Di_n a_88_n1613# VSS s=9492,281 d=9660,283 l=30 w=168 x=344 y=-1612 sky130_fd_pr__nfet_01v8
+x Vin_p Di_n a_88_n1613# VSS s=9492,281 d=18984,562 l=30 w=168 x=1496 y=-1612 sky130_fd_pr__nfet_01v8
+x Vin_n Di_p a_88_n1613# VSS s=9492,281 d=9660,283 l=30 w=168 x=2936 y=-1612 sky130_fd_pr__nfet_01v8
+x Vin_n Di_p a_88_n1613# VSS s=9492,281 d=18984,562 l=30 w=168 x=3512 y=-1612 sky130_fd_pr__nfet_01v8
+x CLK_bar VDD latch.inv0.VDD VDD s=9660,283 d=9492,281 l=30 w=168 x=1641 y=2419 sky130_fd_pr__pfet_01v8
+x CLK VSS a_88_n1613# VSS s=4830,199 d=4746,197 l=30 w=84 x=2505 y=-520 sky130_fd_pr__nfet_01v8
+x Vin_p a_88_n1613# Di_n VSS s=9660,283 d=9492,281 l=30 w=168 x=777 y=-1612 sky130_fd_pr__nfet_01v8
+x Vout_n Vout_p VSS VSS s=4746,197 d=9492,394 l=30 w=84 x=1641 y=437 sky130_fd_pr__nfet_01v8
+x Vin_n a_88_n1613# Di_p VSS s=9660,283 d=9492,281 l=30 w=168 x=3081 y=-1612 sky130_fd_pr__nfet_01v8
+x CLK a_88_n1613# VSS VSS s=4746,197 d=4830,199 l=30 w=84 x=1208 y=-520 sky130_fd_pr__nfet_01v8
+x CLK VDD Di_p VDD s=9492,394 d=4746,197 l=30 w=84 x=2217 y=-2586 sky130_fd_pr__pfet_01v8
+x CLK_bar latch.inv0.VDD VDD VDD s=9492,281 d=18984,562 l=30 w=168 x=2648 y=2419 sky130_fd_pr__pfet_01v8
+x Vin_p Di_n a_88_n1613# VSS s=9492,281 d=9660,283 l=30 w=168 x=920 y=-1612 sky130_fd_pr__nfet_01v8
+x Vout_p latch.inv0.VDD Vout_n VDD s=9492,394 d=4746,197 l=30 w=84 x=2073 y=1495 sky130_fd_pr__pfet_01v8
+x Di_p Vout_n VSS VSS s=4746,197 d=9492,394 l=30 w=84 x=3080 y=437 sky130_fd_pr__nfet_01v8
+x CLK_bar latch.inv0.VDD VDD VDD s=9492,281 d=9660,283 l=30 w=168 x=2072 y=2419 sky130_fd_pr__pfet_01v8
+x Vout_p VSS Vout_n VSS s=9492,394 d=4746,197 l=30 w=84 x=2073 y=437 sky130_fd_pr__nfet_01v8
+x CLK_bar VDD latch.inv0.VDD VDD s=9660,283 d=9492,281 l=30 w=168 x=2217 y=2419 sky130_fd_pr__pfet_01v8
+x Vout_n Vout_p latch.inv0.VDD VDD s=4746,197 d=9492,394 l=30 w=84 x=1641 y=1495 sky130_fd_pr__pfet_01v8
+x Di_p VSS Vout_n VSS s=9492,394 d=4746,197 l=30 w=84 x=2649 y=437 sky130_fd_pr__nfet_01v8
+x Di_p VSS Vout_n VSS s=4830,199 d=4746,197 l=30 w=84 x=2937 y=437 sky130_fd_pr__nfet_01v8
+x CLK VDD Di_n VDD s=9492,394 d=4746,197 l=30 w=84 x=1353 y=-2586 sky130_fd_pr__pfet_01v8
+x CLK_bar latch.inv0.VDD VDD VDD s=9492,281 d=9660,283 l=30 w=168 x=2360 y=2419 sky130_fd_pr__pfet_01v8
+x CLK Di_n VDD VDD s=4746,197 d=9492,394 l=30 w=84 x=1496 y=-2586 sky130_fd_pr__pfet_01v8
+x CLK_bar VDD latch.inv0.VDD VDD s=9660,283 d=9492,281 l=30 w=168 x=2505 y=2419 sky130_fd_pr__pfet_01v8
+x Vin_n a_88_n1613# Di_p VSS s=9660,283 d=9492,281 l=30 w=168 x=2505 y=-1612 sky130_fd_pr__nfet_01v8
+x CLK_bar latch.inv0.VDD VDD VDD s=9492,281 d=9660,283 l=30 w=168 x=1208 y=2419 sky130_fd_pr__pfet_01v8
+x Vin_p a_88_n1613# Di_n VSS s=9660,283 d=9492,281 l=30 w=168 x=1065 y=-1612 sky130_fd_pr__nfet_01v8
+x Vin_n Di_p a_88_n1613# VSS s=9492,281 d=9660,283 l=30 w=168 x=2648 y=-1612 sky130_fd_pr__nfet_01v8
+x Vout_n latch.inv0.VDD Vout_p VDD s=9492,394 d=4746,197 l=30 w=84 x=1498 y=1495 sky130_fd_pr__pfet_01v8
+x Di_p Vout_n VSS VSS s=4746,197 d=4830,199 l=30 w=84 x=2792 y=437 sky130_fd_pr__nfet_01v8
+x CLK a_88_n1613# VSS VSS s=4746,197 d=4830,199 l=30 w=84 x=1496 y=-520 sky130_fd_pr__nfet_01v8
+x Vin_p a_88_n1613# Di_n VSS s=9660,283 d=9492,281 l=30 w=168 x=489 y=-1612 sky130_fd_pr__nfet_01v8
+x Vin_n Di_p a_88_n1613# VSS s=9492,281 d=9660,283 l=30 w=168 x=3224 y=-1612 sky130_fd_pr__nfet_01v8
+C Vout_p Vout_n 2.3
+C VDD latch.inv0.VDD 4.0
+C Di_p a_88_n1613# 2.3
+C Di_n a_88_n1613# 2.3
+C CLK_bar VDD 2.1
+C Vin_n0 2.1
+R Vin_n 4764
+= Vin_n diff_pair.Vin_n
+C Vin_p0 2.1
+R Vin_p 4764
+= Vin_p diff_pair.Vin_p
+C CLK0 3.1
+R CLK 5668
+= CLK diff_pair.CLK
+C Di_p0 2.4
+R Di_p 4210
+= Di_p latch.Di_p
+= Di_p diff_pair.Di_p
+C Di_n0 2.4
+R Di_n 4210
+= Di_n latch.Di_n
+= Di_n diff_pair.Di_n
+C Vout_p0 2.2
+R Vout_p 3003
+= Vout_p latch.inv1.O
+= Vout_p latch.inv0.I
+= Vout_p latch.Vout_p
+C Vout_n0 2.1
+R Vout_n 3003
+= Vout_n latch.inv1.I
+= Vout_n latch.inv0.O
+= Vout_n latch.Vout_n
+R CLK_bar 5741
+= CLK_bar latch.CLK_bar
+C VDD0 29.6
+R VDD 17745
+= VDD latch.VDD
+= VDD diff_pair.VDD
+R VSS 12039
+= VSS latch.inv1.VSS
+= VSS latch.inv0.VSS
+= VSS latch.VSS
+= VSS diff_pair.VSS
+C a_88_n1613#0 5.5
+R a_88_n1613# 9546
+R latch.inv0.VDD 8111
+= latch.inv0.VDD latch.inv1.VDD

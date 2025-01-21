@@ -1,0 +1,36 @@
+strong_arm:
+  diff_pair_12x:
+    bbox:
+    - - -1008
+      - 0
+    - - 2016
+      - 1008
+    cellname: diff_pair_12x
+    libname: strong_arm
+    pins: {}
+  diff_pair_2x:
+    bbox:
+    - - -288
+      - 0
+    - - 576
+      - 1008
+    cellname: diff_pair_2x
+    libname: strong_arm
+    pins: {}
+  diff_pair_4x:
+    bbox:
+    - - -432
+      - 0
+    - - 864
+      - 1008
+    cellname: diff_pair_4x
+    libname: strong_arm
+    pins: {}
+  dummy:
+    bbox:
+    - - 0
+      - 0
+    - - 0
+      - 0
+    cellname: dummy
+    libname: strong_arm

@@ -1,0 +1,139 @@
+timestamp 0
+version 8.3
+tech sky130A
+style ngspice()
+scale 1000 1 500000
+resistclasses 4400000 2200000 950000 3050000 120000 197000 114000 191000 120000 197000 114000 191000 48200 319800 2000000 48200 48200 12800 125 125 47 47 29 5
+parameters sky130_fd_pr__nfet_01v8 l=l w=w a1=as p1=ps a2=ad p2=pd
+parameters sky130_fd_pr__pfet_01v8 l=l w=w a1=as p1=ps a2=ad p2=pd
+port "Vin_n" 6 3312 1728 3312 1728 m2
+port "Vin_p" 7 1008 1728 1008 1728 m2
+port "Di_p" 3 2304 1728 2304 1728 m3
+port "Vout_n" 8 1728 3024 1728 3024 m3
+port "Di_n" 2 2016 1728 2016 1728 m3
+port "Vout_p" 9 2592 3024 2592 3024 m3
+port "CLK" 1 2160 720 2160 720 m2
+port "VDD" 4 2160 4032 2160 4032 m4
+port "VSS" 5 2160 0 2160 0 m4
+node "a_88_1445#" 11013 6588.46 88 1445 ndif 0 0 0 0 0 0 0 0 383040 11280 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 187200 8640 722872 26484 637568 13624 0 0 0 0 0 0 0 0
+node "Vin_n" 5741 2364.88 3312 1728 m2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 169440 8796 0 0 83040 3036 94944 3408 97056 3352 0 0 0 0 0 0 0 0
+equiv "Vin_n" "diff_pair.Vin_n"
+node "Vin_p" 5741 2365.13 1008 1728 m2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 169440 8796 0 0 83040 3036 94944 3408 97056 3352 0 0 0 0 0 0 0 0
+equiv "Vin_p" "diff_pair.Vin_p"
+node "Di_p" 5420 1449.48 2304 1728 m3 0 0 0 0 0 0 0 0 132888 4160 18984 788 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 73440 3648 216040 8396 270568 8228 143584 4992 0 0 0 0 0 0
+equiv "Di_p" "sw1.Di"
+equiv "Di_p" "diff_pair.Di_p"
+node "Vout_n" 2815 829.885 1728 3024 m3 0 0 0 0 0 0 0 0 9492 394 18984 788 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 46400 2260 0 0 40640 1804 118208 3484 177024 6448 120096 4192 0 0 0 0 0 0
+equiv "Vout_n" "inv1.I"
+equiv "Vout_n" "inv0.O"
+equiv "Vout_n" "sw0.O"
+node "Di_n" 5420 1449.39 2016 1728 m3 0 0 0 0 0 0 0 0 132888 4160 18984 788 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 73440 3648 216040 8396 270568 8228 143584 4992 0 0 0 0 0 0
+equiv "Di_n" "sw0.Di"
+equiv "Di_n" "diff_pair.Di_n"
+node "Vout_p" 2815 951.97 2592 3024 m3 0 0 0 0 0 0 0 0 9492 394 18984 788 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 46400 2260 0 0 40640 1804 118208 3484 177024 6448 120096 4192 0 0 0 0 0 0
+equiv "Vout_p" "inv1.O"
+equiv "Vout_p" "sw1.O"
+equiv "Vout_p" "inv0.I"
+node "CLK" 10084 5595.37 2160 720 m2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 308640 15576 0 0 166080 6072 302544 7884 371024 12688 325024 11040 0 0 0 0 0 0
+equiv "CLK" "sw1.CLK"
+equiv "CLK" "sw0.CLK"
+equiv "CLK" "diff_pair.CLK"
+node "VDD" 15731 18808.7 2160 4032 m4 0 0 0 0 4354560 10656 0 0 69600 1096 133224 5524 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 130080 4792 588136 20052 525936 9032 532800 9120 1440000 9760 1734400 11200 0 0
+equiv "VDD" "inv1.VDD"
+equiv "VDD" "sw1.VDD"
+equiv "VDD" "inv0.VDD"
+equiv "VDD" "sw0.VDD"
+substrate "VSS" 0 0 2160 0 m4 0 0 0 0 0 0 0 0 134568 3954 119712 2080 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 185232 5104 525308 16434 432464 8184 463680 7968 1238880 8488 1473280 9608 0 0
+equiv "VSS" "diff_pair.VSS"
+cap "Di_p" "a_88_1445#" 2449.96
+cap "a_88_1445#" "Vin_p" 184.482
+cap "CLK" "Vin_n" 145.449
+cap "Vout_p" "VDD" 1711.08
+cap "Vout_n" "VDD" 1851.53
+cap "Vout_p" "a_88_1445#" 0.989989
+cap "Vout_n" "a_88_1445#" 1.00164
+cap "Di_p" "Vin_n" 1186.56
+cap "CLK" "Di_p" 856.95
+cap "Vin_n" "Vin_p" 16.9047
+cap "CLK" "Vin_p" 145.588
+cap "Di_n" "VDD" 900.094
+cap "Di_n" "a_88_1445#" 2449.95
+cap "Vout_p" "Vin_n" 8.74866
+cap "CLK" "Vout_p" 211.378
+cap "Vout_n" "Vin_n" 13.0754
+cap "CLK" "Vout_n" 211.378
+cap "Di_p" "Vin_p" 1.35938
+cap "Vout_p" "Di_p" 452.434
+cap "Vout_n" "Di_p" 32.7774
+cap "Di_n" "Vin_n" 1.36255
+cap "Vout_p" "Vin_p" 13.1848
+cap "CLK" "Di_n" 856.966
+cap "a_88_1445#" "VDD" 3.91718
+cap "Vout_n" "Vin_p" 8.74549
+cap "Vout_p" "Vout_n" 2180.96
+cap "Di_n" "Di_p" 242.91
+cap "Di_n" "Vin_p" 1186.31
+cap "Vin_n" "VDD" 14.506
+cap "CLK" "VDD" 2573.51
+cap "CLK" "a_88_1445#" 2274.12
+cap "a_88_1445#" "Vin_n" 184.445
+cap "Vout_p" "Di_n" 42.1534
+cap "Di_n" "Vout_n" 443.078
+cap "Di_p" "VDD" 900.129
+cap "VDD" "Vin_p" 14.4886
+device msubckt sky130_fd_pr__nfet_01v8 2936 437 2937 438 l=30 w=168 "VSS" "CLK" 60 0 "a_88_1445#" 168 9492,281 "VSS" 168 18984,562
+device msubckt sky130_fd_pr__nfet_01v8 2793 437 2794 438 l=30 w=168 "VSS" "CLK" 60 0 "VSS" 168 9660,283 "a_88_1445#" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 2648 437 2649 438 l=30 w=168 "VSS" "CLK" 60 0 "a_88_1445#" 168 9492,281 "VSS" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 2505 437 2506 438 l=30 w=168 "VSS" "CLK" 60 0 "VSS" 168 9660,283 "a_88_1445#" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 2360 437 2361 438 l=30 w=168 "VSS" "CLK" 60 0 "a_88_1445#" 168 9492,281 "VSS" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 2217 437 2218 438 l=30 w=168 "VSS" "CLK" 60 0 "VSS" 168 9660,283 "a_88_1445#" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 2072 437 2073 438 l=30 w=168 "VSS" "CLK" 60 0 "a_88_1445#" 168 9492,281 "VSS" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 1929 437 1930 438 l=30 w=168 "VSS" "CLK" 60 0 "VSS" 168 9660,283 "a_88_1445#" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 1784 437 1785 438 l=30 w=168 "VSS" "CLK" 60 0 "a_88_1445#" 168 9492,281 "VSS" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 1641 437 1642 438 l=30 w=168 "VSS" "CLK" 60 0 "VSS" 168 9660,283 "a_88_1445#" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 1496 437 1497 438 l=30 w=168 "VSS" "CLK" 60 0 "a_88_1445#" 168 9492,281 "VSS" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 1353 437 1354 438 l=30 w=168 "VSS" "CLK" 60 0 "VSS" 168 18984,562 "a_88_1445#" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 4088 1445 4089 1446 l=30 w=168 "VSS" "Vin_n" 60 0 "Di_p" 168 9492,281 "a_88_1445#" 168 18984,562
+device msubckt sky130_fd_pr__nfet_01v8 3945 1445 3946 1446 l=30 w=168 "VSS" "Vin_n" 60 0 "a_88_1445#" 168 9660,283 "Di_p" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 3800 1445 3801 1446 l=30 w=168 "VSS" "Vin_n" 60 0 "Di_p" 168 9492,281 "a_88_1445#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 3657 1445 3658 1446 l=30 w=168 "VSS" "Vin_n" 60 0 "a_88_1445#" 168 9660,283 "Di_p" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 3512 1445 3513 1446 l=30 w=168 "VSS" "Vin_n" 60 0 "Di_p" 168 9492,281 "a_88_1445#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 3369 1445 3370 1446 l=30 w=168 "VSS" "Vin_n" 60 0 "a_88_1445#" 168 9660,283 "Di_p" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 3224 1445 3225 1446 l=30 w=168 "VSS" "Vin_n" 60 0 "Di_p" 168 9492,281 "a_88_1445#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 3081 1445 3082 1446 l=30 w=168 "VSS" "Vin_n" 60 0 "a_88_1445#" 168 9660,283 "Di_p" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 2936 1445 2937 1446 l=30 w=168 "VSS" "Vin_n" 60 0 "Di_p" 168 9492,281 "a_88_1445#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 2793 1445 2794 1446 l=30 w=168 "VSS" "Vin_n" 60 0 "a_88_1445#" 168 9660,283 "Di_p" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 2648 1445 2649 1446 l=30 w=168 "VSS" "Vin_n" 60 0 "Di_p" 168 9492,281 "a_88_1445#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 2505 1445 2506 1446 l=30 w=168 "VSS" "Vin_n" 60 0 "a_88_1445#" 168 18984,562 "Di_p" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 1784 1445 1785 1446 l=30 w=168 "VSS" "Vin_p" 60 0 "Di_n" 168 9492,281 "a_88_1445#" 168 18984,562
+device msubckt sky130_fd_pr__nfet_01v8 1641 1445 1642 1446 l=30 w=168 "VSS" "Vin_p" 60 0 "a_88_1445#" 168 9660,283 "Di_n" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 1496 1445 1497 1446 l=30 w=168 "VSS" "Vin_p" 60 0 "Di_n" 168 9492,281 "a_88_1445#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 1353 1445 1354 1446 l=30 w=168 "VSS" "Vin_p" 60 0 "a_88_1445#" 168 9660,283 "Di_n" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 1208 1445 1209 1446 l=30 w=168 "VSS" "Vin_p" 60 0 "Di_n" 168 9492,281 "a_88_1445#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 1065 1445 1066 1446 l=30 w=168 "VSS" "Vin_p" 60 0 "a_88_1445#" 168 9660,283 "Di_n" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 920 1445 921 1446 l=30 w=168 "VSS" "Vin_p" 60 0 "Di_n" 168 9492,281 "a_88_1445#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 777 1445 778 1446 l=30 w=168 "VSS" "Vin_p" 60 0 "a_88_1445#" 168 9660,283 "Di_n" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 632 1445 633 1446 l=30 w=168 "VSS" "Vin_p" 60 0 "Di_n" 168 9492,281 "a_88_1445#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 489 1445 490 1446 l=30 w=168 "VSS" "Vin_p" 60 0 "a_88_1445#" 168 9660,283 "Di_n" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 344 1445 345 1446 l=30 w=168 "VSS" "Vin_p" 60 0 "Di_n" 168 9492,281 "a_88_1445#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 201 1445 202 1446 l=30 w=168 "VSS" "Vin_p" 60 0 "a_88_1445#" 168 18984,562 "Di_n" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 2649 2453 2650 2454 l=30 w=84 "VSS" "Vout_n" 60 0 "Vout_p" 84 4746,197 "Di_p" 84 9492,394
+device msubckt sky130_fd_pr__nfet_01v8 2506 2453 2507 2454 l=30 w=84 "VSS" "Vout_n" 60 0 "Di_p" 84 9492,394 "Vout_p" 84 4746,197
+device msubckt sky130_fd_pr__nfet_01v8 1784 2453 1785 2454 l=30 w=84 "VSS" "Vout_p" 60 0 "Vout_n" 84 4746,197 "Di_n" 84 9492,394
+device msubckt sky130_fd_pr__nfet_01v8 1641 2453 1642 2454 l=30 w=84 "VSS" "Vout_p" 60 0 "Di_n" 84 9492,394 "Vout_n" 84 4746,197
+device msubckt sky130_fd_pr__pfet_01v8 4089 3511 4090 3512 l=30 w=84 "VDD" "CLK" 60 0 "Di_p" 84 4746,197 "VDD" 84 9492,394
+device msubckt sky130_fd_pr__pfet_01v8 3946 3511 3947 3512 l=30 w=84 "VDD" "CLK" 60 0 "VDD" 84 4830,199 "Di_p" 84 4746,197
+device msubckt sky130_fd_pr__pfet_01v8 3801 3511 3802 3512 l=30 w=84 "VDD" "CLK" 60 0 "Di_p" 84 4746,197 "VDD" 84 4830,199
+device msubckt sky130_fd_pr__pfet_01v8 3658 3511 3659 3512 l=30 w=84 "VDD" "CLK" 60 0 "VDD" 84 9492,394 "Di_p" 84 4746,197
+device msubckt sky130_fd_pr__pfet_01v8 3225 3511 3226 3512 l=30 w=84 "VDD" "CLK" 60 0 "Vout_p" 84 4746,197 "VDD" 84 9492,394
+device msubckt sky130_fd_pr__pfet_01v8 3082 3511 3083 3512 l=30 w=84 "VDD" "CLK" 60 0 "VDD" 84 9492,394 "Vout_p" 84 4746,197
+device msubckt sky130_fd_pr__pfet_01v8 2649 3511 2650 3512 l=30 w=84 "VDD" "Vout_n" 60 0 "Vout_p" 84 4746,197 "VDD" 84 9492,394
+device msubckt sky130_fd_pr__pfet_01v8 2506 3511 2507 3512 l=30 w=84 "VDD" "Vout_n" 60 0 "VDD" 84 9492,394 "Vout_p" 84 4746,197
+device msubckt sky130_fd_pr__pfet_01v8 1784 3511 1785 3512 l=30 w=84 "VDD" "Vout_p" 60 0 "Vout_n" 84 4746,197 "VDD" 84 9492,394
+device msubckt sky130_fd_pr__pfet_01v8 1641 3511 1642 3512 l=30 w=84 "VDD" "Vout_p" 60 0 "VDD" 84 9492,394 "Vout_n" 84 4746,197
+device msubckt sky130_fd_pr__pfet_01v8 1208 3511 1209 3512 l=30 w=84 "VDD" "CLK" 60 0 "Vout_n" 84 4746,197 "VDD" 84 9492,394
+device msubckt sky130_fd_pr__pfet_01v8 1065 3511 1066 3512 l=30 w=84 "VDD" "CLK" 60 0 "VDD" 84 9492,394 "Vout_n" 84 4746,197
+device msubckt sky130_fd_pr__pfet_01v8 632 3511 633 3512 l=30 w=84 "VDD" "CLK" 60 0 "Di_n" 84 4746,197 "VDD" 84 9492,394
+device msubckt sky130_fd_pr__pfet_01v8 489 3511 490 3512 l=30 w=84 "VDD" "CLK" 60 0 "VDD" 84 4830,199 "Di_n" 84 4746,197
+device msubckt sky130_fd_pr__pfet_01v8 344 3511 345 3512 l=30 w=84 "VDD" "CLK" 60 0 "Di_n" 84 4746,197 "VDD" 84 4830,199
+device msubckt sky130_fd_pr__pfet_01v8 201 3511 202 3512 l=30 w=84 "VDD" "CLK" 60 0 "VDD" 84 9492,394 "Di_n" 84 4746,197

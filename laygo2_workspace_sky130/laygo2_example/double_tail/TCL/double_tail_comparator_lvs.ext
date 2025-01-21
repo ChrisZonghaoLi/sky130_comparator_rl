@@ -1,0 +1,156 @@
+timestamp 0
+version 8.3
+tech sky130A
+style ngspice()
+scale 1000 1 500000
+resistclasses 4400000 2200000 950000 3050000 120000 197000 114000 191000 120000 197000 114000 191000 48200 319800 2000000 48200 48200 12800 125 125 47 47 29 5
+parameters sky130_fd_pr__nfet_01v8 l=l w=w a1=as p1=ps a2=ad p2=pd
+parameters sky130_fd_pr__pfet_01v8 l=l w=w a1=as p1=ps a2=ad p2=pd
+port "Vin_n" 7 2880 -1728 2880 -1728 m2
+port "Vin_p" 8 864 -1728 864 -1728 m2
+port "CLK" 1 1872 -720 1872 -720 m2
+port "Di_p" 4 2016 -2016 2016 -2016 m3
+port "Di_n" 3 1728 -2016 1728 -2016 m3
+port "Vout_p" 10 1800 864 1800 864 m2
+port "Vout_n" 9 1944 1152 1944 1152 m2
+port "CLK_bar" 2 1872 2304 1872 2304 m2
+port "VDD" 5 1872 3024 1872 3024 m4
+port "VSS" 6 1872 0 1872 0 m4
+node "Vin_n" 4764 2054.68 2880 -1728 m2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 141200 7330 0 0 69200 2530 79120 2840 79520 2768 0 0 0 0 0 0 0 0
+equiv "Vin_n" "diff_pair.Vin_n"
+node "Vin_p" 4764 2054.86 864 -1728 m2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 141200 7330 0 0 69200 2530 79120 2840 79520 2768 0 0 0 0 0 0 0 0
+equiv "Vin_p" "diff_pair.Vin_p"
+node "a_88_n1613#" 9546 5481.78 88 -1613 ndif 0 0 0 0 0 0 0 0 287448 9140 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 138240 6768 615440 22664 569648 12512 0 0 0 0 0 0 0 0
+node "CLK" 5668 3068.48 1872 -720 m2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 185600 9040 0 0 110720 4048 276800 5968 173440 6000 102032 3504 0 0 0 0 0 0
+equiv "CLK" "diff_pair.CLK"
+node "Di_p" 4210 2379.59 2016 -2016 m3 0 0 0 0 0 0 0 0 94920 2810 9492 394 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 46400 2260 0 0 78800 3436 181616 5956 156656 5544 212704 7296 0 0 0 0 0 0
+equiv "Di_p" "latch.Di_p"
+equiv "Di_p" "diff_pair.Di_p"
+node "Di_n" 4210 2379.75 1728 -2016 m3 0 0 0 0 0 0 0 0 94920 2810 9492 394 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 46400 2260 0 0 78800 3436 181616 5956 156656 5544 212704 7296 0 0 0 0 0 0
+equiv "Di_n" "latch.Di_n"
+equiv "Di_n" "diff_pair.Di_n"
+node "Vout_p" 3003 2179.41 1800 864 m2 0 0 0 0 0 0 0 0 28476 1182 9492 394 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 46400 2260 0 0 44960 2068 128544 3948 171040 6248 120096 4192 0 0 0 0 0 0
+equiv "Vout_p" "latch.inv1.O"
+equiv "Vout_p" "latch.inv0.I"
+equiv "Vout_p" "latch.Vout_p"
+node "Vout_n" 3003 2112.71 1944 1152 m2 0 0 0 0 0 0 0 0 28476 1182 9492 394 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 46400 2260 0 0 44960 2068 128544 3948 171040 6248 120096 4192 0 0 0 0 0 0
+equiv "Vout_n" "latch.inv1.I"
+equiv "Vout_n" "latch.inv0.O"
+equiv "Vout_n" "latch.Vout_n"
+node "latch.inv0.VDD" 8111 418.899 1095 2419 pdif 0 0 0 0 0 0 0 0 0 0 151872 4948 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 73440 3648 281200 10568 242512 6048 41552 1488 0 0 0 0 0 0
+equiv "latch.inv0.VDD" "latch.inv1.VDD"
+node "CLK_bar" 5741 500.266 1872 2304 m2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 169440 8796 0 0 83040 3036 94944 3408 97056 3352 0 0 0 0 0 0 0 0
+equiv "CLK_bar" "latch.CLK_bar"
+node "VDD" 17745 29591.9 1872 3024 m4 0 0 0 0 5806080 15264 0 0 208800 3288 172536 5530 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 291600 7368 759452 22954 581760 10176 581760 10176 1862400 19360 4254720 27712 0 0
+equiv "VDD" "latch.VDD"
+equiv "VDD" "diff_pair.VDD"
+substrate "VSS" 0 0 1872 0 m4 0 0 0 0 0 0 0 0 162540 6726 239424 4160 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 312864 8648 1080724 34230 498240 8544 152640 2784 254400 2944 0 0 0 0
+equiv "VSS" "latch.inv1.VSS"
+equiv "VSS" "latch.inv0.VSS"
+equiv "VSS" "latch.VSS"
+equiv "VSS" "diff_pair.VSS"
+cap "CLK" "Di_p" 788.296
+cap "CLK_bar" "Di_p" 1.07755
+cap "Vin_n" "CLK" 74.65
+cap "Vout_n" "VDD" 626.447
+cap "Vout_n" "a_88_n1613#" 4.46979
+cap "CLK_bar" "latch.inv0.VDD" 1319.6
+cap "Vout_p" "CLK" 6.77374
+cap "CLK_bar" "Vout_p" 9.07116
+cap "Di_n" "Di_p" 98.1365
+cap "Vin_n" "Di_n" 1.36255
+cap "Vin_n" "Di_p" 774.825
+cap "Vin_p" "VDD" 96.4952
+cap "Vin_p" "a_88_n1613#" 152.093
+cap "Vout_p" "Di_n" 380.298
+cap "Vout_n" "CLK" 6.54933
+cap "CLK_bar" "Vout_n" 9.19289
+cap "a_88_n1613#" "VDD" 142.536
+cap "Vout_p" "Di_p" 41.3792
+cap "latch.inv0.VDD" "Vout_p" 422.041
+cap "Vin_p" "CLK" 74.6324
+cap "Vout_n" "Di_n" 41.2976
+cap "Vout_n" "Di_p" 380.511
+cap "CLK" "VDD" 991.622
+cap "CLK_bar" "VDD" 2144.98
+cap "a_88_n1613#" "CLK" 1302.91
+cap "Di_n" "Vin_p" 774.676
+cap "latch.inv0.VDD" "Vout_n" 436.227
+cap "Vout_n" "Vout_p" 2281.37
+cap "Vin_p" "Di_p" 1.35938
+cap "Vin_n" "Vin_p" 16.9047
+cap "Di_n" "VDD" 761.887
+cap "VDD" "Di_p" 761.866
+cap "Vin_n" "VDD" 96.6885
+cap "Di_n" "a_88_n1613#" 2279.42
+cap "a_88_n1613#" "Di_p" 2279.43
+cap "Vin_n" "a_88_n1613#" 152.056
+cap "latch.inv0.VDD" "VDD" 3968.62
+cap "Vout_p" "VDD" 575.243
+cap "Vout_p" "a_88_n1613#" 4.46979
+cap "Di_n" "CLK" 788.317
+cap "CLK_bar" "Di_n" 1.07716
+device msubckt sky130_fd_pr__pfet_01v8 2360 -2587 2361 -2586 l=30 w=84 "VDD" "CLK" 60 0 "Di_p" 84 4746,197 "VDD" 84 9492,394
+device msubckt sky130_fd_pr__pfet_01v8 2217 -2587 2218 -2586 l=30 w=84 "VDD" "CLK" 60 0 "VDD" 84 9492,394 "Di_p" 84 4746,197
+device msubckt sky130_fd_pr__pfet_01v8 1496 -2587 1497 -2586 l=30 w=84 "VDD" "CLK" 60 0 "Di_n" 84 4746,197 "VDD" 84 9492,394
+device msubckt sky130_fd_pr__pfet_01v8 1353 -2587 1354 -2586 l=30 w=84 "VDD" "CLK" 60 0 "VDD" 84 9492,394 "Di_n" 84 4746,197
+device msubckt sky130_fd_pr__nfet_01v8 3512 -1613 3513 -1612 l=30 w=168 "VSS" "Vin_n" 60 0 "Di_p" 168 9492,281 "a_88_n1613#" 168 18984,562
+device msubckt sky130_fd_pr__nfet_01v8 3369 -1613 3370 -1612 l=30 w=168 "VSS" "Vin_n" 60 0 "a_88_n1613#" 168 9660,283 "Di_p" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 3224 -1613 3225 -1612 l=30 w=168 "VSS" "Vin_n" 60 0 "Di_p" 168 9492,281 "a_88_n1613#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 3081 -1613 3082 -1612 l=30 w=168 "VSS" "Vin_n" 60 0 "a_88_n1613#" 168 9660,283 "Di_p" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 2936 -1613 2937 -1612 l=30 w=168 "VSS" "Vin_n" 60 0 "Di_p" 168 9492,281 "a_88_n1613#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 2793 -1613 2794 -1612 l=30 w=168 "VSS" "Vin_n" 60 0 "a_88_n1613#" 168 9660,283 "Di_p" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 2648 -1613 2649 -1612 l=30 w=168 "VSS" "Vin_n" 60 0 "Di_p" 168 9492,281 "a_88_n1613#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 2505 -1613 2506 -1612 l=30 w=168 "VSS" "Vin_n" 60 0 "a_88_n1613#" 168 9660,283 "Di_p" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 2360 -1613 2361 -1612 l=30 w=168 "VSS" "Vin_n" 60 0 "Di_p" 168 9492,281 "a_88_n1613#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 2217 -1613 2218 -1612 l=30 w=168 "VSS" "Vin_n" 60 0 "a_88_n1613#" 168 18984,562 "Di_p" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 1496 -1613 1497 -1612 l=30 w=168 "VSS" "Vin_p" 60 0 "Di_n" 168 9492,281 "a_88_n1613#" 168 18984,562
+device msubckt sky130_fd_pr__nfet_01v8 1353 -1613 1354 -1612 l=30 w=168 "VSS" "Vin_p" 60 0 "a_88_n1613#" 168 9660,283 "Di_n" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 1208 -1613 1209 -1612 l=30 w=168 "VSS" "Vin_p" 60 0 "Di_n" 168 9492,281 "a_88_n1613#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 1065 -1613 1066 -1612 l=30 w=168 "VSS" "Vin_p" 60 0 "a_88_n1613#" 168 9660,283 "Di_n" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 920 -1613 921 -1612 l=30 w=168 "VSS" "Vin_p" 60 0 "Di_n" 168 9492,281 "a_88_n1613#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 777 -1613 778 -1612 l=30 w=168 "VSS" "Vin_p" 60 0 "a_88_n1613#" 168 9660,283 "Di_n" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 632 -1613 633 -1612 l=30 w=168 "VSS" "Vin_p" 60 0 "Di_n" 168 9492,281 "a_88_n1613#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 489 -1613 490 -1612 l=30 w=168 "VSS" "Vin_p" 60 0 "a_88_n1613#" 168 9660,283 "Di_n" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 344 -1613 345 -1612 l=30 w=168 "VSS" "Vin_p" 60 0 "Di_n" 168 9492,281 "a_88_n1613#" 168 9660,283
+device msubckt sky130_fd_pr__nfet_01v8 201 -1613 202 -1612 l=30 w=168 "VSS" "Vin_p" 60 0 "a_88_n1613#" 168 18984,562 "Di_n" 168 9492,281
+device msubckt sky130_fd_pr__nfet_01v8 2648 -521 2649 -520 l=30 w=84 "VSS" "CLK" 60 0 "a_88_n1613#" 84 4746,197 "VSS" 84 9492,394
+device msubckt sky130_fd_pr__nfet_01v8 2505 -521 2506 -520 l=30 w=84 "VSS" "CLK" 60 0 "VSS" 84 4830,199 "a_88_n1613#" 84 4746,197
+device msubckt sky130_fd_pr__nfet_01v8 2360 -521 2361 -520 l=30 w=84 "VSS" "CLK" 60 0 "a_88_n1613#" 84 4746,197 "VSS" 84 4830,199
+device msubckt sky130_fd_pr__nfet_01v8 2217 -521 2218 -520 l=30 w=84 "VSS" "CLK" 60 0 "VSS" 84 4830,199 "a_88_n1613#" 84 4746,197
+device msubckt sky130_fd_pr__nfet_01v8 2072 -521 2073 -520 l=30 w=84 "VSS" "CLK" 60 0 "a_88_n1613#" 84 4746,197 "VSS" 84 4830,199
+device msubckt sky130_fd_pr__nfet_01v8 1929 -521 1930 -520 l=30 w=84 "VSS" "CLK" 60 0 "VSS" 84 4830,199 "a_88_n1613#" 84 4746,197
+device msubckt sky130_fd_pr__nfet_01v8 1784 -521 1785 -520 l=30 w=84 "VSS" "CLK" 60 0 "a_88_n1613#" 84 4746,197 "VSS" 84 4830,199
+device msubckt sky130_fd_pr__nfet_01v8 1641 -521 1642 -520 l=30 w=84 "VSS" "CLK" 60 0 "VSS" 84 4830,199 "a_88_n1613#" 84 4746,197
+device msubckt sky130_fd_pr__nfet_01v8 1496 -521 1497 -520 l=30 w=84 "VSS" "CLK" 60 0 "a_88_n1613#" 84 4746,197 "VSS" 84 4830,199
+device msubckt sky130_fd_pr__nfet_01v8 1353 -521 1354 -520 l=30 w=84 "VSS" "CLK" 60 0 "VSS" 84 4830,199 "a_88_n1613#" 84 4746,197
+device msubckt sky130_fd_pr__nfet_01v8 1208 -521 1209 -520 l=30 w=84 "VSS" "CLK" 60 0 "a_88_n1613#" 84 4746,197 "VSS" 84 4830,199
+device msubckt sky130_fd_pr__nfet_01v8 1065 -521 1066 -520 l=30 w=84 "VSS" "CLK" 60 0 "VSS" 84 9492,394 "a_88_n1613#" 84 4746,197
+device msubckt sky130_fd_pr__nfet_01v8 3080 437 3081 438 l=30 w=84 "VSS" "Di_p" 60 0 "Vout_n" 84 4746,197 "VSS" 84 9492,394
+device msubckt sky130_fd_pr__nfet_01v8 2937 437 2938 438 l=30 w=84 "VSS" "Di_p" 60 0 "VSS" 84 4830,199 "Vout_n" 84 4746,197
+device msubckt sky130_fd_pr__nfet_01v8 2792 437 2793 438 l=30 w=84 "VSS" "Di_p" 60 0 "Vout_n" 84 4746,197 "VSS" 84 4830,199
+device msubckt sky130_fd_pr__nfet_01v8 2649 437 2650 438 l=30 w=84 "VSS" "Di_p" 60 0 "VSS" 84 9492,394 "Vout_n" 84 4746,197
+device msubckt sky130_fd_pr__nfet_01v8 2216 437 2217 438 l=30 w=84 "VSS" "Vout_p" 60 0 "Vout_n" 84 4746,197 "VSS" 84 9492,394
+device msubckt sky130_fd_pr__nfet_01v8 2073 437 2074 438 l=30 w=84 "VSS" "Vout_p" 60 0 "VSS" 84 9492,394 "Vout_n" 84 4746,197
+device msubckt sky130_fd_pr__nfet_01v8 1641 437 1642 438 l=30 w=84 "VSS" "Vout_n" 60 0 "Vout_p" 84 4746,197 "VSS" 84 9492,394
+device msubckt sky130_fd_pr__nfet_01v8 1498 437 1499 438 l=30 w=84 "VSS" "Vout_n" 60 0 "VSS" 84 9492,394 "Vout_p" 84 4746,197
+device msubckt sky130_fd_pr__nfet_01v8 1064 437 1065 438 l=30 w=84 "VSS" "Di_n" 60 0 "Vout_p" 84 4746,197 "VSS" 84 9492,394
+device msubckt sky130_fd_pr__nfet_01v8 921 437 922 438 l=30 w=84 "VSS" "Di_n" 60 0 "VSS" 84 4830,199 "Vout_p" 84 4746,197
+device msubckt sky130_fd_pr__nfet_01v8 776 437 777 438 l=30 w=84 "VSS" "Di_n" 60 0 "Vout_p" 84 4746,197 "VSS" 84 4830,199
+device msubckt sky130_fd_pr__nfet_01v8 633 437 634 438 l=30 w=84 "VSS" "Di_n" 60 0 "VSS" 84 9492,394 "Vout_p" 84 4746,197
+device msubckt sky130_fd_pr__pfet_01v8 2216 1495 2217 1496 l=30 w=84 "VDD" "Vout_p" 60 0 "Vout_n" 84 4746,197 "latch.inv0.VDD" 84 9492,394
+device msubckt sky130_fd_pr__pfet_01v8 2073 1495 2074 1496 l=30 w=84 "VDD" "Vout_p" 60 0 "latch.inv0.VDD" 84 9492,394 "Vout_n" 84 4746,197
+device msubckt sky130_fd_pr__pfet_01v8 1641 1495 1642 1496 l=30 w=84 "VDD" "Vout_n" 60 0 "Vout_p" 84 4746,197 "latch.inv0.VDD" 84 9492,394
+device msubckt sky130_fd_pr__pfet_01v8 1498 1495 1499 1496 l=30 w=84 "VDD" "Vout_n" 60 0 "latch.inv0.VDD" 84 9492,394 "Vout_p" 84 4746,197
+device msubckt sky130_fd_pr__pfet_01v8 2648 2419 2649 2420 l=30 w=168 "VDD" "CLK_bar" 60 0 "latch.inv0.VDD" 168 9492,281 "VDD" 168 18984,562
+device msubckt sky130_fd_pr__pfet_01v8 2505 2419 2506 2420 l=30 w=168 "VDD" "CLK_bar" 60 0 "VDD" 168 9660,283 "latch.inv0.VDD" 168 9492,281
+device msubckt sky130_fd_pr__pfet_01v8 2360 2419 2361 2420 l=30 w=168 "VDD" "CLK_bar" 60 0 "latch.inv0.VDD" 168 9492,281 "VDD" 168 9660,283
+device msubckt sky130_fd_pr__pfet_01v8 2217 2419 2218 2420 l=30 w=168 "VDD" "CLK_bar" 60 0 "VDD" 168 9660,283 "latch.inv0.VDD" 168 9492,281
+device msubckt sky130_fd_pr__pfet_01v8 2072 2419 2073 2420 l=30 w=168 "VDD" "CLK_bar" 60 0 "latch.inv0.VDD" 168 9492,281 "VDD" 168 9660,283
+device msubckt sky130_fd_pr__pfet_01v8 1929 2419 1930 2420 l=30 w=168 "VDD" "CLK_bar" 60 0 "VDD" 168 9660,283 "latch.inv0.VDD" 168 9492,281
+device msubckt sky130_fd_pr__pfet_01v8 1784 2419 1785 2420 l=30 w=168 "VDD" "CLK_bar" 60 0 "latch.inv0.VDD" 168 9492,281 "VDD" 168 9660,283
+device msubckt sky130_fd_pr__pfet_01v8 1641 2419 1642 2420 l=30 w=168 "VDD" "CLK_bar" 60 0 "VDD" 168 9660,283 "latch.inv0.VDD" 168 9492,281
+device msubckt sky130_fd_pr__pfet_01v8 1496 2419 1497 2420 l=30 w=168 "VDD" "CLK_bar" 60 0 "latch.inv0.VDD" 168 9492,281 "VDD" 168 9660,283
+device msubckt sky130_fd_pr__pfet_01v8 1353 2419 1354 2420 l=30 w=168 "VDD" "CLK_bar" 60 0 "VDD" 168 9660,283 "latch.inv0.VDD" 168 9492,281
+device msubckt sky130_fd_pr__pfet_01v8 1208 2419 1209 2420 l=30 w=168 "VDD" "CLK_bar" 60 0 "latch.inv0.VDD" 168 9492,281 "VDD" 168 9660,283
+device msubckt sky130_fd_pr__pfet_01v8 1065 2419 1066 2420 l=30 w=168 "VDD" "CLK_bar" 60 0 "VDD" 168 18984,562 "latch.inv0.VDD" 168 9492,281

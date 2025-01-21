@@ -1,0 +1,275 @@
+# Technology parameters for the advanced example technology.
+mpl: # for matplotlib
+  colormap:
+    prBoundary: ["darkgray", "none", 0.3]
+    nwell: ["yellowgreen", "none", 0.3]
+    pimplant: ["tomato", "none", 0.3]
+    nimplant: ["olive", "none", 0.3]
+    diffusion: ["r", "r", 0.5]
+    poly: ["b", "b", 0.3]
+    metal1: ["c", "c", 0.5]
+    metal2: ["y", "y", 0.5]
+    metal3: ["g", "g", 0.5]
+    metal4: ["m", "m", 0.5]
+    via1: ["indigo", "indigo", 1]
+    via2: ["navy", "navy", 1]
+    via3: ["olive", "olive", 1]
+    __instance__: ["black", "none", 1]
+    __instance_pin__: ["gray", "none", 1]
+  order:
+    - __instance__
+    - __instance_pin__
+    - prBoundary
+    - nwell
+    - pimplant
+    - nimplant
+    - diffusion
+    - poly
+    - metal1
+    - via1
+    - metal2
+    - via2
+    - metal3
+    - via3
+    - metal4
+    - text
+grids:
+  placement_basic:
+    type: placement
+    vertical:
+      scope: [0, 15]
+      elements: [0]
+    horizontal:
+      scope: [0, 10]
+      elements: [0]
+  placement_cmos:
+    type: placement
+    vertical:
+      scope: [0, 30]
+      elements: [0]
+    horizontal:
+      scope: [0, 100]
+      elements: [0]
+  routing_12_mos:
+    type: routing
+    vertical:
+      scope: [0, 30]
+      elements: [0]
+      layer:
+        - [metal1, drawing]
+      pin_layer:
+        - [metal1, pin]
+      width: [14]
+      extension: [15]
+    horizontal:
+      scope: [0, 100]
+      elements: [0, 30, 50, 80]
+      layer:
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+      pin_layer:
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+      width: [10, 10, 10, 10]
+      extension: [15, 15, 15, 15]
+    primary_grid: horizontal  # the primary routing direction
+    via:
+      map:
+        - [via_r12_default, via_r12_default, via_r12_default, via_r12_default]
+  routing_12_mos_flipped:
+    type: routing
+    vertical:
+      scope: [0, 30]
+      elements: [0]
+      layer:
+        - [metal1, drawing]
+      pin_layer:
+        - [metal1, pin]
+      width: [14]
+      extension: [15]
+    horizontal:
+      scope: [0, 100]
+      elements: [0, 20, 50, 70]
+      layer:
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+      pin_layer:
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+      width: [10, 10, 10, 10]
+      extension: [15, 15, 15, 15]
+    primary_grid: horizontal  # the primary routing direction
+    via:
+      map:
+        - [via_r12_default, via_r12_default, via_r12_default, via_r12_default]
+  routing_12_cmos:
+    type: routing
+    vertical:
+      scope: [0, 30]
+      elements: [0]
+      layer:
+        - [metal1, drawing]
+      pin_layer:
+        - [metal1, pin]
+      width: [14]
+      extension: [15]
+    horizontal:
+      scope: [0, 200]
+      elements: [0, 30, 50, 80, 120, 150, 170]
+      layer:
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+      pin_layer:
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+      width: [10, 10, 10, 10, 10, 10, 10, 10]
+      extension: [15, 15, 15, 15, 15, 15, 15, 15]
+    primary_grid: horizontal  # the primary routing direction
+    via:
+      map:
+        - [via_r12_default, via_r12_default, via_r12_default, via_r12_default,
+           via_r12_default, via_r12_default, via_r12_default, via_r12_default]
+  routing_23_mos:
+    type: routing
+    vertical:
+      scope: [0, 30]
+      elements: [0]
+      layer:
+        - [metal3, drawing]
+      pin_layer:
+        - [metal3, pin]
+      width: [10]
+      extension: [15]
+    horizontal:
+      scope: [0, 100]
+      elements: [0, 30, 50, 80]
+      layer:
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+      pin_layer:
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+      width: [10, 10, 10, 10]
+      extension: [15, 15, 15, 15]
+    primary_grid: horizontal  # the primary routing direction
+    via:
+      map:
+        - [via_r23_default, via_r23_default, via_r23_default, via_r23_default]
+  routing_23_mos_flipped:
+    type: routing
+    vertical:
+      scope: [0, 30]
+      elements: [0]
+      layer:
+        - [metal3, drawing]
+      pin_layer:
+        - [metal3, pin]
+      width: [10]
+      extension: [15]
+    horizontal:
+      scope: [0, 100]
+      elements: [0, 20, 50, 70]
+      layer:
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+      pin_layer:
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+      width: [10, 10, 10, 10]
+      extension: [15, 15, 15, 15]
+    primary_grid: horizontal  # the primary routing direction
+    via:
+      map:
+        - [via_r23_default, via_r23_default, via_r23_default, via_r23_default]
+  routing_23_cmos:
+    type: routing
+    vertical:
+      scope: [0, 30]
+      elements: [0]
+      layer:
+        - [metal3, drawing]
+      pin_layer:
+        - [metal3, pin]
+      width: [10]
+      extension: [15]
+    horizontal:
+      scope: [0, 200]
+      elements: [0, 30, 50, 80, 120, 150, 170]
+      layer:
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+        - [metal2, drawing]
+      pin_layer:
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+        - [metal2, pin]
+      width: [10, 10, 10, 10, 10, 10, 10, 10]
+      extension: [15, 15, 15, 15, 15, 15, 15, 15]
+    primary_grid: horizontal  # the primary routing direction
+    via:
+      map:
+        - [via_r23_default, via_r23_default, via_r23_default, via_r23_default,
+           via_r23_default, via_r23_default, via_r23_default, via_r23_default]
+  routing_34_basic:
+    type: routing
+    vertical:
+      scope: [0, 30]
+      elements: [0]
+      layer:
+        - [metal3, drawing]
+      pin_layer:
+        - [metal3, pin]
+      width: [10]
+      extension: [15]
+    horizontal:
+      scope: [0, 20]
+      elements: [0]
+      layer:
+        - [metal4, drawing]
+      pin_layer:
+        - [metal4, pin]
+      width: [10]
+      extension: [15]
+    primary_grid: horizontal  # the primary routing direction
+    via:
+      map:
+        - [via_r34_default]
+

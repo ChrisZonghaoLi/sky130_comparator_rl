@@ -1,0 +1,3 @@
+# see <mag_set_path.sh> for the path for <sky130A.magicrc> and personal libs path definition.
+#source $CAD_ROOT/magic/sys/sky130A.magicrc
+source .maginit_personal

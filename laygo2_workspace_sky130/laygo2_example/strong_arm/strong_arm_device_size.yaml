@@ -1,0 +1,31 @@
+M1:
+  W_continuous: 9.74907341182232
+  W_discrete: 10.08
+  mosfet: nfet_01v8_0p84_nf2
+  nf: 12
+M10:
+  W_continuous: 1.3362991857528685
+  W_discrete: 1.68
+  mosfet: pfet_01v8_0p42_nf2
+  nf: 4
+M3:
+  W_continuous: 0.4369939029216763
+  W_discrete: 0.84
+  mosfet: nfet_01v8_0p42_nf2
+  nf: 2
+M5:
+  W_continuous: 0.8466322726011279
+  W_discrete: 0.84
+  mosfet: pfet_01v8_0p42_nf2
+  nf: 2
+M7:
+  W_continuous: 9.902091627717018
+  W_discrete: 10.08
+  mosfet: nfet_01v8_0p84_nf2
+  nf: 12
+M8:
+  W_continuous: 0.45970192790031383
+  W_discrete: 0.84
+  mosfet: pfet_01v8_0p42_nf2
+  nf: 2
+circuit: strong_arm

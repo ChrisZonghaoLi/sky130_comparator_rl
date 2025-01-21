@@ -1,0 +1,40 @@
+magic
+tech sky130A
+timestamp 1706909938
+<< pwell >>
+rect 0 342 144 504
+rect -36 186 180 342
+rect 0 0 144 186
+<< psubdiff >>
+rect -15 286 159 307
+rect -15 242 -10 286
+rect 10 242 62 286
+rect 82 242 134 286
+rect 154 242 159 286
+rect -15 221 159 242
+<< psubdiffcont >>
+rect -10 242 10 286
+rect 62 242 82 286
+rect 134 242 154 286
+<< locali >>
+rect -15 286 159 307
+rect -15 242 -10 286
+rect 10 242 62 286
+rect 82 242 134 286
+rect 154 242 159 286
+rect -15 221 159 242
+<< viali >>
+rect -10 242 10 286
+rect 62 242 82 286
+rect 134 242 154 286
+<< metal1 >>
+rect -15 286 159 307
+rect -15 242 -10 286
+rect 10 242 62 286
+rect 82 242 134 286
+rect 154 242 159 286
+rect -15 221 159 242
+rect -15 143 15 221
+rect 57 143 87 221
+rect 129 143 159 221
+<< end >>
